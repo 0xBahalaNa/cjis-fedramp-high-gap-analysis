@@ -1,3 +1,10 @@
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+![Gap Analysis](https://img.shields.io/badge/Gap%20Analysis-Control%20Deltas-3e4042?style=flat)
+![OSCAL](https://img.shields.io/badge/OSCAL-Profile-1c5b94?style=flat)
+![NIST 800-53](https://img.shields.io/badge/NIST-800--53%20Rev%205-004990?style=flat)
+![FedRAMP](https://img.shields.io/badge/FedRAMP-High%20Baseline-0071bc?style=flat)
+![CJIS](https://img.shields.io/badge/CJIS-Security%20Policy%20v6.0-cc0000?style=flat)
+
 # CJIS v6.0 to FedRAMP High Gap Analysis
 
 Identifies where the CJIS Security Policy v6.0 exceeds FedRAMP High baseline requirements on a control-by-control basis. CJIS v6.0 (December 2024) aligns with NIST 800-53 Rev 5 and becomes the audit standard on April 1, 2026. This project produces a structured delta analysis showing the specific controls where a law enforcement agency's cloud deployment must go beyond its FedRAMP High authorization to satisfy CJIS requirements. Built for GRC engineers, compliance analysts, and assessors working in public safety technology environments.
