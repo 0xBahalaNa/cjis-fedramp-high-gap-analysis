@@ -7,7 +7,7 @@
 
 # CJIS v6.0 to FedRAMP High Gap Analysis
 
-Identifies where the CJIS Security Policy v6.0 exceeds FedRAMP High baseline requirements on a control-by-control basis. CJIS v6.0 (December 2024) aligns with NIST 800-53 Rev 5 and becomes the audit standard on April 1, 2026. This project produces a structured delta analysis showing the specific controls where a law enforcement agency's cloud deployment must go beyond its FedRAMP High authorization to satisfy CJIS requirements. Built for GRC engineers, compliance analysts, and assessors working in public safety technology environments.
+Identifies where the CJIS Security Policy v6.0 exceeds FedRAMP High baseline requirements on a control-by-control basis. CJIS v6.0 (published Dec 27, 2024) aligns with NIST 800-53 Rev 5 and phases in rather than switching on a single date: v5.9.5 was the scored audit standard through March 31, 2026 and v6.0 is the default audit baseline from April 1, 2026. This project produces a structured delta analysis showing the specific controls where a law enforcement agency's cloud deployment must go beyond its FedRAMP High authorization to satisfy CJIS requirements. Built for GRC engineers, compliance analysts, and assessors working in public safety technology environments.
 
 ## Why This Matters
 
@@ -80,7 +80,7 @@ The gap analysis data will be structured in OSCAL-compatible format, aligning wi
 
 ## CJIS v6.0 Context
 
-CJIS Security Policy v6.0 was released in December 2024, completing the alignment with NIST 800-53 Rev 5. It replaces v5.9.x as the audit standard effective April 1, 2026. Key changes from v5.9.x include:
+CJIS Security Policy v6.0 was published Dec 27, 2024, completing alignment with NIST 800-53 Rev 5. The rollout is phased rather than a single cutover: v5.9.5 remained the scored audit standard through March 31, 2026; v6.0 is the default go-forward audit baseline from April 1, 2026 (FBI formal v6.0 auditing began Oct 1, 2025); Priority-1 controls including MFA have been sanctionable since Oct 1, 2024; and modernized Priority 2-4 controls are fully enforceable Oct 1, 2027 (timing varies by state CSA—Texas, for example, runs v5.9.5 through March 31, 2027). Key changes from v5.9.x include:
 
 - Full adoption of NIST 800-53 Rev 5 control catalog (previously mapped to Rev 4)
 - Updated Advanced Authentication requirements aligned with NIST SP 800-63-3
