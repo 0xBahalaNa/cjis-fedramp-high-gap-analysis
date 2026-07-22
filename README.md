@@ -9,6 +9,26 @@
 
 Identifies where the CJIS Security Policy v6.0 exceeds FedRAMP High baseline requirements on a control-by-control basis. CJIS v6.0 (published Dec 27, 2024) aligns with NIST 800-53 Rev 5 and phases in rather than switching on a single date: v5.9.5 was the scored audit standard through March 31, 2026 and v6.0 is the default audit baseline from April 1, 2026. This project produces a structured delta analysis showing the specific controls where a law enforcement agency's cloud deployment must go beyond its FedRAMP High authorization to satisfy CJIS requirements. Built for GRC engineers, compliance analysts, and assessors working in public safety technology environments.
 
+## Architecture Overview
+
+```mermaid
+graph TD
+    FR["data/fedramp-high-profile.json<br/>FedRAMP High OSCAL profile"] --> OV["data/cjis-overlay.json<br/>CJIS v6.0 overlay on FedRAMP High"]
+    CJ["CJIS Security Policy v6.0<br/>NIST 800-53 Rev 5"] -. informs .-> OV
+    OV --> DELTA["profile.modify.alters<br/>cjis-delta parts"]
+    DELTA --> IMP["gap-type: implementation-delta<br/>stricter params / scope"]
+    DELTA --> CTRL["gap-type: control-level-gap<br/>CJIS-only controls"]
+    IMP --> CAT["delta-category clusters<br/>personnel · auth · encryption · privacy · …"]
+    CTRL --> CAT
+    CAT --> ANA["analysis/gap-analysis.md<br/>control-by-control narrative"]
+    CAT --> GEN["scripts/generate_gap_report.py"]
+    GEN --> RPT["output/gap-report.md<br/>generated gap report"]
+```
+
+Editable Mermaid source (kept in sync with the fence above): [`docs/architecture.mmd`](docs/architecture.mmd).
+
+The FedRAMP High reference profile is the baseline; the CJIS v6.0 OSCAL overlay imports it and records each delta under `profile.modify.alters` as a `cjis-delta` part with `gap-type` and `delta-category` props. Auditors use the hand-authored narrative in `analysis/gap-analysis.md` or regenerate `output/gap-report.md` from the overlay via `scripts/generate_gap_report.py`.
+
 ## Why This Matters
 
 A CSP with a FedRAMP High ATO already satisfies the majority of CJIS v6.0 requirements — both frameworks derive from NIST 800-53 Rev 5. But "majority" is not "all." CJIS imposes additional requirements in specific control areas that reflect the sensitivity of Criminal Justice Information (CJI). An agency or CSP that assumes FedRAMP High equivalence without analyzing the deltas risks audit findings, delayed authorizations, or — in the worst case — unauthorized access to CJI.
@@ -97,6 +117,8 @@ For CSPs already operating under FedRAMP High, the v6.0 update is significant be
 ├── data/
 │   ├── fedramp-high-profile.json   # FedRAMP High baseline (OSCAL profile)
 │   └── cjis-overlay.json           # CJIS v6.0 overlay (OSCAL profile)
+├── docs/
+│   └── architecture.mmd            # Mermaid source (sync with README fence)
 ├── scripts/
 │   └── generate_gap_report.py      # Gap report generator (OSCAL → markdown)
 ├── output/
