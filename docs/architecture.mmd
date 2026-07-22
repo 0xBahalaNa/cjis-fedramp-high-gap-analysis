@@ -1,0 +1,14 @@
+%% Editable Mermaid source for the README "Architecture Overview" section.
+%% Keep this file in sync with the inline ```mermaid fence in README.md.
+%% Diff-able source of truth for the architecture graph (no separate PNG export).
+graph TD
+    FR["data/fedramp-high-profile.json<br/>FedRAMP High OSCAL profile"] --> OV["data/cjis-overlay.json<br/>CJIS v6.0 overlay on FedRAMP High"]
+    CJ["CJIS Security Policy v6.0<br/>NIST 800-53 Rev 5"] -. informs .-> OV
+    OV --> DELTA["profile.modify.alters<br/>cjis-delta parts"]
+    DELTA --> IMP["gap-type: implementation-delta<br/>stricter params / scope"]
+    DELTA --> CTRL["gap-type: control-level-gap<br/>CJIS-only controls"]
+    IMP --> CAT["delta-category clusters<br/>personnel · auth · encryption · privacy · …"]
+    CTRL --> CAT
+    CAT --> ANA["analysis/gap-analysis.md<br/>control-by-control narrative"]
+    CAT --> GEN["scripts/generate_gap_report.py"]
+    GEN --> RPT["output/gap-report.md<br/>generated gap report"]
