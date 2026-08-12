@@ -7,7 +7,17 @@
 
 # CJIS v6.0 to FedRAMP High Gap Analysis
 
-Identifies where the CJIS Security Policy v6.0 exceeds FedRAMP High baseline requirements on a control-by-control basis. CJIS v6.0 (published Dec 27, 2024) aligns with NIST 800-53 Rev 5 and phases in rather than switching on a single date: v5.9.5 was the scored audit standard through March 31, 2026 and v6.0 is the default audit baseline from April 1, 2026. This project produces a structured delta analysis showing the specific controls where a law enforcement agency's cloud deployment must go beyond its FedRAMP High authorization to satisfy CJIS requirements. Built for GRC engineers, compliance analysts, and assessors working in public safety technology environments.
+I built this to answer a narrow question: if a CSP already holds FedRAMP High, which
+CJIS Security Policy v6.0 requirements still sit outside that baseline? CJIS v6.0
+(published Dec 27, 2024) uses NIST 800-53 Rev 5. v5.9.5 stayed the scored audit
+standard through March 31, 2026; v6.0 is the default audit baseline from April 1,
+2026. The repo holds a FedRAMP High OSCAL profile, a CJIS overlay that records each
+delta, a hand-authored narrative in `analysis/gap-analysis.md`, and a generator that
+rebuilds `output/gap-report.md`.
+
+The tables below list 13 implementation-level deltas and 12 control-level gaps. That
+is the scoped set I verified against the published v6.0 text; it is not a claim that
+every possible CJIS nuance is catalogued.
 
 ## Architecture Overview
 
@@ -27,20 +37,30 @@ graph TD
 
 Editable Mermaid source (kept in sync with the fence above): [`docs/architecture.mmd`](docs/architecture.mmd).
 
-The FedRAMP High reference profile is the baseline; the CJIS v6.0 OSCAL overlay imports it and records each delta under `profile.modify.alters` as a `cjis-delta` part with `gap-type` and `delta-category` props. Auditors use the hand-authored narrative in `analysis/gap-analysis.md` or regenerate `output/gap-report.md` from the overlay via `scripts/generate_gap_report.py`.
+The FedRAMP High profile is the import baseline. The CJIS overlay adds
+`profile.modify.alters` entries as `cjis-delta` parts with `gap-type` and
+`delta-category` props. Read `analysis/gap-analysis.md` for the prose, or run
+`scripts/generate_gap_report.py` to regenerate `output/gap-report.md` from the
+overlay JSON.
 
 ## Why This Matters
 
-A CSP with a FedRAMP High ATO already satisfies the majority of CJIS v6.0 requirements — both frameworks derive from NIST 800-53 Rev 5. But "majority" is not "all." CJIS imposes additional requirements in specific control areas that reflect the sensitivity of Criminal Justice Information (CJI). An agency or CSP that assumes FedRAMP High equivalence without analyzing the deltas risks audit findings, delayed authorizations, or — in the worst case — unauthorized access to CJI.
+Both frameworks sit on NIST 800-53 Rev 5, so a FedRAMP High ATO covers most of
+CJIS v6.0. Most is not all. CJIS tightens screening, authentication, encryption key
+custody, audit review cadence, and several privacy controls that FedRAMP High never
+picked up. If you treat the ATO as equivalent without walking the deltas, the miss
+shows up in a CJIS audit as missing evidence or missing controls, not as a small
+paperwork gap.
 
-This project makes those deltas explicit, traceable, and machine-readable.
+This repo names those deltas in tables and in OSCAL so the list is fixed and
+regenerable.
 
 ## Gap Summary
 
 The gap analysis distinguishes two categories of gaps between CJIS v6.0 and FedRAMP High:
 
-- **Implementation-level deltas** — controls present in both baselines, where CJIS imposes stricter parameters, scope, or methodology (e.g., CJIS requires fingerprint-based background checks for PS-3, while FedRAMP allows the organization to define screening method).
-- **Control-level gaps** — controls present in the CJIS v6.0 baseline but absent from FedRAMP High entirely. An agency running FedRAMP High must implement these from scratch to satisfy CJIS. These are concentrated in the NIST 800-53 Rev 5 privacy overlay, reflecting CJI's status as sensitive personal data.
+- **Implementation-level deltas** - controls present in both baselines, where CJIS imposes stricter parameters, scope, or methodology (e.g., CJIS requires fingerprint-based background checks for PS-3, while FedRAMP allows the organization to define screening method).
+- **Control-level gaps** - controls present in the CJIS v6.0 baseline but absent from FedRAMP High entirely. An agency running FedRAMP High must implement these from scratch to satisfy CJIS. These are concentrated in the NIST 800-53 Rev 5 privacy overlay, reflecting CJI's status as sensitive personal data.
 
 ### Implementation-Level Deltas
 
@@ -85,29 +105,39 @@ Controls present in the CJIS v6.0 published control set (FBI CJIS Division, 2024
 
 ## How an Auditor Uses This Output
 
-A CJIS auditor reviewing a CSP's compliance posture starts with the FedRAMP High ATO package as a baseline, then uses this gap analysis to identify the specific controls requiring additional evidence or implementation. For each delta control, the analysis documents:
-
-- **What FedRAMP High requires** — the baseline expectation already met
-- **What CJIS v6.0 adds** — the additional or stricter requirement
-- **Implementation guidance** — how to close the gap (policy, technical control, or process)
-- **Evidence required** — what an auditor expects to see during a CJIS audit
-
-This turns an ambiguous "is FedRAMP enough?" question into a concrete remediation checklist.
+Start from the FedRAMP High package, then open either `analysis/gap-analysis.md` or
+the generated `output/gap-report.md`. For each row I expect four things on the
+working copy: what FedRAMP High already covers, what CJIS adds, how the agency
+plans to close it (policy, technical control, or process), and what artifact will
+prove the close. That turns "is FedRAMP enough?" into a 25-row checklist (13 + 12)
+instead of a verbal assurance.
 
 ## FedRAMP 20x Alignment
 
-The gap analysis data will be structured in OSCAL-compatible format, aligning with FedRAMP 20x compliance-as-code requirements. OSCAL profile comparison enables automated delta detection: import both the FedRAMP High profile and a CJIS v6.0 overlay, then programmatically identify where the CJIS profile adds parameters, constraints, or entirely new requirements. This machine-readable approach supports continuous compliance validation rather than point-in-time spreadsheet audits.
+The overlay in `data/cjis-overlay.json` is already OSCAL profile JSON. Import the
+FedRAMP High profile, apply the CJIS alters, and you can diff parameters and
+added controls in tooling instead of maintaining a one-off spreadsheet. I use that
+shape so a later continuous check can re-run the same comparison when either
+baseline moves. The hand narrative stays the human-readable half; the overlay is
+the machine-readable half.
 
 ## CJIS v6.0 Context
 
-CJIS Security Policy v6.0 was published Dec 27, 2024, completing alignment with NIST 800-53 Rev 5. The rollout is phased rather than a single cutover: v5.9.5 remained the scored audit standard through March 31, 2026; v6.0 is the default go-forward audit baseline from April 1, 2026 (FBI formal v6.0 auditing began Oct 1, 2025); Priority-1 controls including MFA have been sanctionable since Oct 1, 2024; and modernized Priority 2-4 controls are fully enforceable Oct 1, 2027 (timing varies by state CSA—Texas, for example, runs v5.9.5 through March 31, 2027). Key changes from v5.9.x include:
+CJIS Security Policy v6.0 was published Dec 27, 2024 and finished the move onto
+NIST 800-53 Rev 5. Rollout is phased: v5.9.5 scored through March 31, 2026; v6.0
+is the go-forward baseline from April 1, 2026 (FBI formal v6.0 auditing began
+Oct 1, 2025); Priority-1 controls including MFA have been sanctionable since
+Oct 1, 2024; Priority 2-4 are fully enforceable Oct 1, 2027 (state CSA timing
+varies; Texas, for example, runs v5.9.5 through March 31, 2027). Changes that
+matter for this gap set:
 
-- Full adoption of NIST 800-53 Rev 5 control catalog (previously mapped to Rev 4)
+- Full adoption of the NIST 800-53 Rev 5 control catalog (previously mapped to Rev 4)
 - Updated Advanced Authentication requirements aligned with NIST SP 800-63-3
 - Explicit FIPS 140-2/140-3 validation requirements for cryptographic modules
 - Restructured policy sections mapping directly to 800-53 control families
 
-For CSPs already operating under FedRAMP High, the v6.0 update is significant because it means CJIS and FedRAMP now share the same control catalog — making delta analysis cleaner and more precise than under v5.9.x.
+Sharing the Rev 5 catalog with FedRAMP High is why a clean delta table is possible
+here in a way it was not under v5.9.x.
 
 ## Project Structure
 
