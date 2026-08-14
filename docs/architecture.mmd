@@ -2,8 +2,8 @@
 %% Keep this file in sync with the inline ```mermaid fence in README.md.
 %% Diff-able source of truth for the architecture graph (no separate PNG export).
 graph TD
-    FR["data/fedramp-high-profile.json<br/>FedRAMP High OSCAL profile"] --> OV["data/cjis-overlay.json<br/>CJIS v6.0 overlay on FedRAMP High"]
-    CJ["CJIS Security Policy v6.0<br/>NIST 800-53 Rev 5"] -. informs .-> OV
+    FR["data/fedramp-high-profile.json<br/>FedRAMP High OSCAL profile"] --> OV["data/cjis-overlay.json<br/>CJIS v6.1 overlay on FedRAMP High"]
+    CJ["CJIS Security Policy v6.1<br/>NIST 800-53 Rev 5"] -. informs .-> OV
     OV --> DELTA["profile.modify.alters<br/>cjis-delta parts"]
     DELTA --> IMP["gap-type: implementation-delta<br/>stricter params / scope"]
     DELTA --> CTRL["gap-type: control-level-gap<br/>CJIS-only controls"]

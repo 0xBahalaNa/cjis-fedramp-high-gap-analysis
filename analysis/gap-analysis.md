@@ -1,15 +1,15 @@
-# CJIS v6.0 to FedRAMP High — Control-by-Control Delta Analysis
+# CJIS v6.1 to FedRAMP High — Control-by-Control Delta Analysis
 
 Source data: `data/cjis-overlay.json` (OSCAL overlay with structured delta capture)
 
 ## Gap Categories
 
-The gap analysis distinguishes two categories of gaps between CJIS v6.0 and FedRAMP High:
+The gap analysis distinguishes two categories of gaps between CJIS v6.1 and FedRAMP High:
 
 1. **Implementation-level deltas** are controls present in both baselines where CJIS imposes stricter parameters, scope, or methodology. The baseline control exists in FedRAMP High; CJIS tightens it (for example, CJIS requires fingerprint-based background checks for PS-3 while FedRAMP leaves screening method to organizational discretion).
-2. **Control-level gaps** are controls present in the CJIS v6.0 baseline but absent from FedRAMP High entirely. An agency running FedRAMP High must implement these from scratch to satisfy CJIS. These are concentrated in the NIST 800-53 Rev 5 privacy overlay, reflecting CJI's status as sensitive personal data.
+2. **Control-level gaps** are controls present in the CJIS v6.1 baseline but absent from FedRAMP High entirely. An agency running FedRAMP High must implement these from scratch to satisfy CJIS. These are concentrated in the NIST 800-53 Rev 5 privacy overlay, reflecting CJI's status as sensitive personal data.
 
-Baseline comparison identifies 13 implementation-level deltas and 12 control-level gaps. The analysis below addresses both, grouped by category. See the "Methodology" section at the end of this document for how gap controls were verified against the published CJIS v6.0 source text.
+Baseline comparison identifies 13 implementation-level deltas and 12 control-level gaps. The analysis below addresses both, grouped by category. See the "Methodology" section at the end of this document for how gap controls were verified against the published CJIS v6.1 source text.
 
 ### Implementation-Level Deltas (13 controls)
 
@@ -54,7 +54,7 @@ Baseline comparison identifies 13 implementation-level deltas and 12 control-lev
 
 **NIST 800-53 Rev 5 Control:** Screen individuals prior to authorizing access to the system; rescreen individuals in accordance with organization-defined conditions and frequency.
 
-**CJIS v6.0 Reference:** Section 5.12 (Personnel Security)
+**CJIS v6.1 Reference:** Personnel Security (PS) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -65,7 +65,7 @@ FedRAMP High requires background investigations for personnel with access to the
 
 FedRAMP does not prescribe the *type* of background check. A standard OPM-tier investigation or commercial background check satisfies the baseline, as long as it matches the position risk designation. This flexibility is where CJIS diverges.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS eliminates the flexibility in screening method and scope:
 
@@ -98,7 +98,7 @@ An auditor will expect to see:
 
 - **Encryption safe harbor:** If CJI is encrypted with agency-managed keys and the CSP personnel cannot access the decryption keys, those personnel may be outside the fingerprint check scope. This is a common architecture strategy to reduce the population requiring fingerprint checks, but the encryption implementation must be defensible (see SC-12, SC-28).
 - **Subcontractor chains:** If the CSP uses subcontractors (e.g., managed services, data center staff), the fingerprint requirement flows down. The CSP must ensure subcontractors complete fingerprint checks or are architecturally excluded from CJI access.
-- **State-specific variations:** While CJIS v6.0 sets the floor, individual state CSAs may impose additional screening requirements. The CSP should confirm requirements with each state CSA it serves.
+- **State-specific variations:** While CJIS v6.1 sets the floor, individual state CSAs may impose additional screening requirements. The CSP should confirm requirements with each state CSA it serves.
 - **Timeline:** Fingerprint-based checks can take weeks to complete depending on the state. Plan for this lead time in hiring and onboarding processes.
 
 ---
@@ -107,7 +107,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Develop and document access agreements for organizational systems; review and update access agreements at organization-defined frequency; verify that individuals sign appropriate access agreements prior to being granted access and re-sign when agreements are updated.
 
-**CJIS v6.0 Reference:** Section 5.12 (Personnel Security)
+**CJIS v6.1 Reference:** Personnel Security (PS) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -124,7 +124,7 @@ The baseline defers to the organization for:
 
 Standard access agreements cover general system use, data handling, and security responsibilities. FedRAMP does not prescribe a specific agreement template for particular data types.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS requires a specific, additional agreement beyond standard access agreements:
 
@@ -168,7 +168,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Uniquely identify and authenticate organizational users and associate that unique identification with processes acting on behalf of those users.
 
-**CJIS v6.0 Reference:** Section 5.6 (Identification and Authentication)
+**CJIS v6.1 Reference:** Identification and Authentication (IA) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -180,7 +180,7 @@ FedRAMP High requires multi-factor authentication for all users through enhancem
 
 FedRAMP High does not prescribe a specific Authentication Assurance Level (AAL) from NIST SP 800-63-3, nor does it mandate phishing resistance. An organization using SMS-based OTP as a second factor satisfies the FedRAMP High baseline, even though SMS OTP is vulnerable to SIM-swapping and interception attacks.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS defines "Advanced Authentication" with specific requirements that narrow the acceptable MFA implementations:
 
@@ -231,7 +231,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Manage system authenticators by verifying identity during initial distribution, establishing initial authenticator content, ensuring sufficient strength, implementing administrative procedures, changing defaults, and protecting authenticator content from unauthorized disclosure and modification.
 
-**CJIS v6.0 Reference:** Section 5.6 (Identification and Authentication)
+**CJIS v6.1 Reference:** Identification and Authentication (IA) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -242,7 +242,7 @@ FedRAMP High requires authenticator management with organization-defined paramet
 
 For password-based authenticators specifically, FedRAMP High enhancement IA-5(1) requires password complexity and rotation, but the specific values (minimum length, composition rules, rotation period, history depth) are left to the organization. FedRAMP provides guidance through its parameter requirements but does not dictate exact values for all parameters.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS replaces the org-defined flexibility with prescriptive password parameters:
 
@@ -253,13 +253,13 @@ CJIS replaces the org-defined flexibility with prescriptive password parameters:
 
 **Why this matters — the 800-63B tension:** NIST SP 800-63B (Digital Identity Guidelines, 2017) explicitly *discourages* periodic password rotation, recommending instead that passwords be changed only when there is evidence of compromise. The reasoning is sound — forced rotation leads to weaker passwords (users increment a number, add a symbol) and does not measurably improve security when combined with breach detection.
 
-However, CJIS v6.0 requires 90-day rotation. For CJI systems, **CJIS requirements take precedence over 800-63B guidance.** This is not a contradiction in the framework — CJIS is a policy overlay with specific operational requirements for CJI, while 800-63B is a guideline. When they conflict, the more restrictive policy wins for the data type it governs. An auditor will not accept "we follow 800-63B instead" as a justification for skipping 90-day rotation on CJI systems.
+However, CJIS v6.1 requires 90-day rotation. For CJI systems, **CJIS requirements take precedence over 800-63B guidance.** This is not a contradiction in the framework — CJIS is a policy overlay with specific operational requirements for CJI, while 800-63B is a guideline. When they conflict, the more restrictive policy wins for the data type it governs. An auditor will not accept "we follow 800-63B instead" as a justification for skipping 90-day rotation on CJI systems.
 
 #### Implementation Guidance
 
 1. **Configure the identity provider** to enforce CJIS password parameters. Set minimum length to 8, require 3 of 4 character categories, enforce 90-day maximum age, and set password history to 10. These settings must be applied to all accounts that access CJI.
 2. **Verify SSO/federated IdP compliance.** If CJI access flows through SSO, the upstream IdP must enforce CJIS password policy. A downstream application cannot compensate for a weak upstream password policy.
-3. **Document the 800-63B deviation.** Since CJIS password requirements conflict with 800-63B guidance, document this explicitly: "CJI systems enforce 90-day password rotation per CJIS Security Policy v6.0 Section 5.6, which takes precedence over NIST SP 800-63B rotation guidance for systems processing CJI." This preempts questions about why your password policy appears to contradict NIST guidance.
+3. **Document the 800-63B deviation.** Since CJIS password requirements conflict with 800-63B guidance, document this explicitly: "CJI systems enforce 90-day password rotation per CJIS Security Policy v6.1 Section 5.6, which takes precedence over NIST SP 800-63B rotation guidance for systems processing CJI." This preempts questions about why your password policy appears to contradict NIST guidance.
 4. **Scope the policy to CJI systems.** Non-CJI systems can follow 800-63B guidance (no forced rotation). Apply CJIS password parameters only to systems and accounts that access CJI. This reduces user friction on non-CJI systems while maintaining compliance.
 5. **Monitor for weak rotation patterns.** Even with history enforcement, users may rotate through predictable patterns (Summer2026!, Fall2026!, Winter2027!). Consider implementing password similarity checks or a deny-list of common patterns if the IdP supports it.
 
@@ -278,13 +278,13 @@ An auditor will expect to see:
 - **MFA does not replace password policy.** Even with AAL2 MFA (IA-2), CJIS still requires compliant password parameters. MFA and password policy are independent requirements — satisfying one does not exempt the other.
 - **Service accounts and API keys.** Clarify with the CSA whether service accounts that access CJI must follow the same password parameters. Service accounts typically use long-lived secrets or certificates, not user-interactive passwords. The 90-day rotation may apply differently to these.
 - **Password manager compatibility.** Organizations should encourage (or require) password managers to help users generate and manage complex passwords that change every 90 days. This mitigates the weak-rotation-pattern problem.
-- **Future CJIS updates.** CJIS v6.0 aligned with 800-53 Rev 5 but retained legacy password parameters from earlier versions. Future CJIS updates may reconcile with 800-63B guidance. Until then, enforce the current requirements.
+- **Future CJIS updates.** CJIS v6.1 aligned with 800-53 Rev 5 but retained legacy password parameters from earlier versions. Future CJIS updates may reconcile with 800-63B guidance. Until then, enforce the current requirements.
 
 ---
 
 ## Encryption
 
-Encryption is the most technically consequential delta between CJIS v6.0 and FedRAMP High. FedRAMP High requires encryption with FIPS-validated modules but allows the CSP to manage encryption keys. CJIS fundamentally changes the key management model: the law enforcement agency — not the CSP — must retain control over encryption keys for CJI. This has direct architectural implications for AWS KMS, storage service configuration, and cross-account access patterns.
+Encryption is the most technically consequential delta between CJIS v6.1 and FedRAMP High. FedRAMP High requires encryption with FIPS-validated modules but allows the CSP to manage encryption keys. CJIS fundamentally changes the key management model: the law enforcement agency — not the CSP — must retain control over encryption keys for CJI. This has direct architectural implications for AWS KMS, storage service configuration, and cross-account access patterns.
 
 These three controls are tightly coupled:
 - **SC-12** governs *who manages the keys* and the key lifecycle
@@ -295,7 +295,7 @@ These three controls are tightly coupled:
 
 **NIST 800-53 Rev 5 Control:** Establish and manage cryptographic keys when cryptography is employed within the system in accordance with organization-defined key management requirements.
 
-**CJIS v6.0 Reference:** Section 5.10.1 (Encryption)
+**CJIS v6.1 Reference:** System and Communications Protection (SC) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -306,7 +306,7 @@ FedRAMP High requires cryptographic key management using FIPS-validated cryptogr
 
 Critically, FedRAMP High does not prescribe *who* manages the keys. A CSP using AWS-managed keys (e.g., `aws/s3`, `aws/ebs` default KMS keys) satisfies the FedRAMP baseline. The CSP manages the key lifecycle, the keys live in the CSP's infrastructure, and the customer trusts the CSP to handle key management properly. This is the standard shared responsibility model for encryption — the CSP provides the service, the customer uses it.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS breaks the standard shared responsibility model for key management:
 
@@ -352,7 +352,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Determine the cryptographic uses required for the system; implement the required types of cryptography for each specified use.
 
-**CJIS v6.0 Reference:** Section 5.10.1 (Encryption)
+**CJIS v6.1 Reference:** System and Communications Protection (SC) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -363,7 +363,7 @@ FedRAMP High requires FIPS-validated cryptography for information protection. Th
 
 FedRAMP High does not prescribe minimum key lengths. An organization using AES-128 or AES-256 both satisfy the baseline, as long as the implementation uses a FIPS-validated module. Similarly, RSA-2048 and RSA-4096 are both acceptable. The baseline focuses on *validation status*, not *cryptographic strength* beyond what FIPS validation requires.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS adds prescriptive minimum key lengths on top of the FIPS validation requirement:
 
@@ -400,7 +400,7 @@ An auditor will expect to see:
 - **TLS is where gaps hide.** While storage encryption is typically AES-256, TLS configurations can inadvertently include weaker cipher suites from older security policies. Audit all load balancers, API gateways, and CloudFront distributions for cipher suite compliance.
 - **ECC equivalence.** CJIS specifies 2048-bit asymmetric minimum, which is RSA-specific. For ECC, use NIST-recommended equivalent strength: P-256 (128-bit security level) meets the minimum, P-384 (192-bit) exceeds it. Document the equivalence rationale.
 - **Relationship to SC-12 and SC-28.** SC-13 defines the *strength* of the cryptography; SC-12 defines *who manages* it; SC-28 defines *where it applies* for data at rest. All three must be satisfied together — using AES-256 (SC-13) with a CSP-managed key (fails SC-12) for data at rest (SC-28) would not satisfy CJIS.
-- **Crypto agility.** As NIST post-quantum cryptography standards mature, agencies should plan for algorithm migration. CJIS v6.0 does not yet require post-quantum algorithms, but awareness of the transition timeline is a forward-looking consideration.
+- **Crypto agility.** As NIST post-quantum cryptography standards mature, agencies should plan for algorithm migration. CJIS v6.1 does not yet require post-quantum algorithms, but awareness of the transition timeline is a forward-looking consideration.
 
 ---
 
@@ -408,7 +408,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Protect the confidentiality and integrity of information at rest.
 
-**CJIS v6.0 Reference:** Section 5.10.1 (Encryption)
+**CJIS v6.1 Reference:** System and Communications Protection (SC) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -419,7 +419,7 @@ FedRAMP High requires encryption at rest for information stored on the system. T
 
 FedRAMP High is satisfied by enabling encryption on storage services using any FIPS-validated method. AWS-managed default encryption (e.g., S3 default encryption with `aws/s3` KMS key, EBS encryption with `aws/ebs` KMS key) satisfies the FedRAMP baseline. The key management is transparent to the customer — AWS creates, rotates, and manages the keys.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS adds a specific key ownership requirement that changes the entire encryption-at-rest architecture:
 
@@ -468,7 +468,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Sanitize organization-defined system media prior to disposal, release out of organizational control, or release for reuse using organization-defined sanitization techniques and procedures; employ sanitization mechanisms with the strength and integrity commensurate with the security category or classification of the information.
 
-**CJIS v6.0 Reference:** Section 5.8 (Media Protection)
+**CJIS v6.1 Reference:** Media Protection (MP) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -479,7 +479,7 @@ FedRAMP High requires media sanitization before disposal or reuse, but defers he
 
 FedRAMP High requires sanitization that is proportional to the data classification, and it references NIST SP 800-88 (Guidelines for Media Sanitization) as guidance. However, the baseline does not mandate specific sanitization methods per media type. An organization could clear, purge, or destroy media — the choice is left to the organization based on their risk assessment and the information's sensitivity. There is no explicit requirement for witnessed destruction or per-event sanitization records beyond what the organization defines in its own procedures.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS replaces the organizational flexibility with prescriptive sanitization requirements tied to media type:
 
@@ -501,8 +501,8 @@ CJIS replaces the organizational flexibility with prescriptive sanitization requ
    | SSD / Flash | Cryptographic erase (if supported with verification) or physical destruction (shred/incinerate) | NIST 800-88 Purge |
    | Magnetic tape | Degauss to point of destruction or incinerate | NIST 800-88 Destroy |
    | Optical media (CD/DVD) | Physical destruction (shred/incinerate) | NIST 800-88 Destroy |
-   | Paper documents | Cross-cut shred or incinerate | CJIS v6.0 §5.8 |
-   | Microform | Cross-cut shred or incinerate | CJIS v6.0 §5.8 |
+   | Paper documents | Cross-cut shred or incinerate | CJIS v6.1 §5.8 |
+   | Microform | Cross-cut shred or incinerate | CJIS v6.1 §5.8 |
    | Mobile devices | Cryptographic erase + factory reset (if verified) or physical destruction | NIST 800-88 Purge |
 
 2. **Implement witnessed destruction procedures.** Designate authorized witnesses for sanitization events. For in-house sanitization, the witness must be present during the process. For third-party destruction vendors, require certificates of destruction that include media serial numbers, destruction method, date, and witness signatures.
@@ -515,7 +515,7 @@ CJIS replaces the organizational flexibility with prescriptive sanitization requ
 
 An auditor will expect to see:
 
-- **Media sanitization policy** specific to CJI, referencing NIST 800-88 and CJIS v6.0 requirements
+- **Media sanitization policy** specific to CJI, referencing NIST 800-88 and CJIS v6.1 requirements
 - **Sanitization matrix** mapping media types to approved methods (as described above)
 - **Sanitization logs** with media identifiers, methods, dates, and witness signatures for each event
 - **Certificates of destruction** from third-party destruction vendors, per media item
@@ -539,7 +539,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Review and analyze system audit records for indications of inappropriate or unusual activity and the potential impact of the inappropriate or unusual activity; report findings to designated personnel or roles; and adjust the level of audit record review, analysis, and reporting when there is a change in risk.
 
-**CJIS v6.0 Reference:** Section 5.4 (Auditing and Accountability)
+**CJIS v6.1 Reference:** Audit and Accountability (AU) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -551,7 +551,7 @@ FedRAMP High requires review and analysis of audit records at an organization-de
 
 FedRAMP High does not prescribe which specific events must be included in each review cycle, nor does it mandate a minimum retention period for audit logs beyond compliance with applicable records management requirements (typically NARA schedules). The organization determines the scope and depth of each review based on its own risk assessment.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS narrows the flexibility in two areas: review cadence and log retention.
 
@@ -601,7 +601,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Define and document account types; assign account managers; specify authorized users, group and role membership, and access authorizations for each account; review accounts for compliance with account management requirements at an organization-defined frequency; and align account management processes with personnel termination and transfer processes.
 
-**CJIS v6.0 Reference:** Section 5.5 (Access Control)
+**CJIS v6.1 Reference:** Access Control (AC) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -613,7 +613,7 @@ FedRAMP High requires comprehensive account lifecycle management, but defers to 
 
 FedRAMP High satisfies the account management baseline with annual access reviews, organization-defined notification timelines, and standard account lifecycle procedures. The baseline focuses on the *existence* of account management processes rather than prescribing specific cadences for CJI or other data-type-specific reviews.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS tightens the review cadence and adds immediate-action requirements for CJI-authorized accounts:
 
@@ -678,7 +678,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Require personnel to report suspected incidents to the organizational incident response capability within an organization-defined time period; and report incident information to organization-defined authorities.
 
-**CJIS v6.0 Reference:** Section 5.3 (Incident Response)
+**CJIS v6.1 Reference:** Incident Response (IR) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -689,17 +689,17 @@ FedRAMP High requires incident reporting with two organization-defined parameter
 
 FedRAMP incident reporting is oriented toward cyber threat intelligence and federal incident coordination. The reporting content focuses on technical details: indicators of compromise, tactics/techniques/procedures (TTPs), affected systems, attack vectors. The purpose is to enable US-CERT/CISA to warn other federal entities and coordinate a federal response.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS adds a parallel reporting chain for incidents involving CJI. The delta is in the authorities parameter (ir-06_odp.02), which must be expanded to include law enforcement-specific reporting channels:
 
 - **Additional reporting to CJIS Systems Officer (CSO)** — each state's CJIS Systems Agency (CSA) designates a CSO who serves as the point of contact for CJIS incident reporting. Incidents involving CJI must be reported to the CSO of the state whose agencies' CJI was affected. The CSO is a law enforcement coordination role, not a general cybersecurity role. Note the acronym collision: CJIS Systems Officer (CSO) is different from Chief Security Officer (CSO) — in a CJIS context, CSO always refers to the CJIS Systems Officer.
-- **Additional reporting to SIB Chief or Interface Agency Official** — depending on the state CSA's designation under CJIS v6.0 IR-6 (page 171), incidents must be reported to the State Identification Bureau (SIB) Chief or to a designated Interface Agency Official in addition to (or instead of) the CSO. The state CSA selects one or more recipients from this set. The FBI CJIS Division publishes the policy and is the federal authority responsible for CJIS oversight, but is not itself a designated incident-reporting recipient under IR-6 — any onward escalation to the FBI is the state CSA's responsibility, not the CSP's.
-- **State-designated recipient set** — under CJIS v6.0 IR-6 (page 171), the recipients of incident reports are CSO, SIB Chief, or Interface Agency Official, as designated by each state CSA. The CSP's reporting obligation is satisfied by reaching the designated recipient(s) for each affected state. For a CSP serving multiple state agencies, this means tracking the designated recipient(s) per state CSA, which may differ between states.
+- **Additional reporting to SIB Chief or Interface Agency Official** — depending on the state CSA's designation under CJIS v6.1 IR-6 (page 171), incidents must be reported to the State Identification Bureau (SIB) Chief or to a designated Interface Agency Official in addition to (or instead of) the CSO. The state CSA selects one or more recipients from this set. The FBI CJIS Division publishes the policy and is the federal authority responsible for CJIS oversight, but is not itself a designated incident-reporting recipient under IR-6 — any onward escalation to the FBI is the state CSA's responsibility, not the CSP's.
+- **State-designated recipient set** — under CJIS v6.1 IR-6 (page 171), the recipients of incident reports are CSO, SIB Chief, or Interface Agency Official, as designated by each state CSA. The CSP's reporting obligation is satisfied by reaching the designated recipient(s) for each affected state. For a CSP serving multiple state agencies, this means tracking the designated recipient(s) per state CSA, which may differ between states.
 - **State-defined reporting timeframes** — unlike US-CERT's standardized severity tiers with specific reporting windows, CJIS defers the reporting timeframe to the state CSA. Common timeframes range from immediate (within 1 hour for high-severity) to within 24 hours for lower-severity incidents. The CSP must confirm the specific timeframe with each state CSA it serves, and the most restrictive timeframe applies when a single incident affects multiple states.
 - **Expanded incident content** — CJIS incident reports must include information beyond the standard cyber incident report: which specific CJI data sets were affected (NCIC, III, CHRI, fingerprint data, etc.), whether the compromised data relates to active investigations, whether officer or source safety is impacted, and the number of records affected. This content is more operationally sensitive than typical FedRAMP reports.
 
-**Why this matters:** The CJIS reporting chain exists because US-CERT/CISA does not have law enforcement operational equities. When CJI is compromised, the impact is not just a cybersecurity incident — it may affect active investigations, undercover operations, protected witnesses, informants, victims (including minors), and suspect records. These are real people whose safety and ongoing legal proceedings may depend on the confidentiality of that data. The state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 IR-6) has the law enforcement context to assess those operational impacts and coordinate downstream notifications to affected agencies, officers, and individuals. A CSP that reports only to US-CERT and skips CJIS reporting has satisfied FedRAMP but failed CJIS — and the consequence is loss of CJIS authorization, which ends the CSP's ability to serve law enforcement customers.
+**Why this matters:** The CJIS reporting chain exists because US-CERT/CISA does not have law enforcement operational equities. When CJI is compromised, the impact is not just a cybersecurity incident — it may affect active investigations, undercover operations, protected witnesses, informants, victims (including minors), and suspect records. These are real people whose safety and ongoing legal proceedings may depend on the confidentiality of that data. The state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6) has the law enforcement context to assess those operational impacts and coordinate downstream notifications to affected agencies, officers, and individuals. A CSP that reports only to US-CERT and skips CJIS reporting has satisfied FedRAMP but failed CJIS — and the consequence is loss of CJIS authorization, which ends the CSP's ability to serve law enforcement customers.
 
 #### Implementation Guidance
 
@@ -707,13 +707,13 @@ CJIS adds a parallel reporting chain for incidents involving CJI. The delta is i
    - **Internal detection and triage** — how the incident is identified and classified as CJI-related.
    - **Internal reporting** — who on the incident response team is notified, and within what timeframe.
    - **Customer (agency) notification** — the CSP notifies the affected state and local agencies whose CJI was involved.
-   - **State CSA-designated recipient notification** — the CSP or the affected local agency reports to the state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 IR-6, page 171) within the state-defined timeframe. Onward escalation within the state CSA (including any FBI CJIS Division notification) is the state CSA's responsibility.
+   - **State CSA-designated recipient notification** — the CSP or the affected local agency reports to the state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6, page 171) within the state-defined timeframe. Onward escalation within the state CSA (including any FBI CJIS Division notification) is the state CSA's responsibility.
    - **US-CERT/CISA notification** — standard FedRAMP reporting continues in parallel with CJIS reporting.
 2. **Maintain current CSO contact information.** For each state the CSP serves, maintain the current contact information for the state CSA and CSO, including primary and backup contacts, phone numbers, email addresses, and after-hours contact procedures. CSO personnel change — verify contacts annually and after known CSA staffing changes.
-3. **Document each state CSA's designated IR-6 recipient(s).** For each state the CSP serves, document which IR-6 recipient role(s) the state CSA has designated under CJIS v6.0 IR-6 (page 171): CSO, SIB Chief, or Interface Agency Official. A state CSA may designate one or more. Include role-by-role contact information in the IRP (primary, backup, and after-hours) for each designated recipient.
+3. **Document each state CSA's designated IR-6 recipient(s).** For each state the CSP serves, document which IR-6 recipient role(s) the state CSA has designated under CJIS v6.1 IR-6 (page 171): CSO, SIB Chief, or Interface Agency Official. A state CSA may designate one or more. Include role-by-role contact information in the IRP (primary, backup, and after-hours) for each designated recipient.
 4. **Define what constitutes a CJI security incident.** A CJI security incident includes: unauthorized access to CJI (logical or physical), loss or theft of media containing CJI, unauthorized disclosure of CJI (internal or external), compromise of systems that store or process CJI (even if CJI exfiltration cannot be confirmed), and compromise of authentication credentials for CJI-authorized accounts. Document these triggers in the IRP so the response team can quickly classify an incident as CJI-related.
 5. **Build incident report templates that satisfy both frameworks.** Create standardized incident report templates for CJI incidents that capture all information required by both FedRAMP (US-CERT classification, TTPs, IOCs) and CJIS (affected CJI data sets, operational impact, affected agencies, record counts). A single template with dual-purpose sections reduces the risk of omitting required content under time pressure.
-6. **Conduct tabletop exercises that include CJIS reporting.** Test the CJIS reporting chain in tabletop exercises at least annually. Scenarios should include: CJI exfiltration, compromised CJI-authorized credentials, ransomware affecting CJI systems, and insider threat scenarios involving CJI access. Measure reporting timeliness to each state's designated recipient(s) (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 IR-6) as specific tabletop objectives. Document exercise results and any gaps identified.
+6. **Conduct tabletop exercises that include CJIS reporting.** Test the CJIS reporting chain in tabletop exercises at least annually. Scenarios should include: CJI exfiltration, compromised CJI-authorized credentials, ransomware affecting CJI systems, and insider threat scenarios involving CJI access. Measure reporting timeliness to each state's designated recipient(s) (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6) as specific tabletop objectives. Document exercise results and any gaps identified.
 7. **Establish communication channels for incident reporting.** Identify the communication channels for reaching each state CSA's designated recipient(s) during an incident: phone, encrypted email, secure portal. Verify these channels work during off-hours, since incidents often occur outside business hours. Test the channels periodically.
 
 **AWS Implementation Note:** AWS Shared Responsibility means AWS handles security incidents affecting the underlying infrastructure (hypervisor, physical hardware, AWS service planes), while the customer (the CJIS-subject CSP) handles incidents at the application and data layer. AWS reports infrastructure incidents to the customer through AWS Security Hub, AWS GuardDuty, and AWS Support cases. The CSP is responsible for classifying whether an AWS-reported infrastructure incident has CJI impact and for initiating the CJIS reporting chain accordingly. Configure AWS GuardDuty, CloudTrail alerts, and Security Hub findings to route to the incident response team with clear tagging for CJI-containing resources (e.g., resource tags like `contains-cji: true`) so the response team can quickly determine whether an alert triggers CJIS reporting.
@@ -722,7 +722,7 @@ CJIS adds a parallel reporting chain for incidents involving CJI. The delta is i
 
 An auditor will expect to see:
 
-- **Incident Response Plan** with explicit CJIS reporting procedures, identifying each state CSA's designated recipient(s) (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 IR-6, page 171)
+- **Incident Response Plan** with explicit CJIS reporting procedures, identifying each state CSA's designated recipient(s) (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6, page 171)
 - **State CSA-designated recipient contact information** for each state the CSP serves, with primary, backup, and after-hours contacts documented and verified for each designated role (CSO, SIB Chief, and/or Interface Agency Official as designated)
 - **CJI security incident definition** documenting what triggers CJIS reporting
 - **Incident report templates** covering both FedRAMP and CJIS required content
@@ -749,7 +749,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Determine and document the alternate work sites allowed for use by employees; employ organization-defined controls at alternate work sites; assess the effectiveness of controls at alternate work sites; and provide a means for employees to communicate with information security and privacy personnel in case of incidents.
 
-**CJIS v6.0 Reference:** Section 5.9 (Physical Protection)
+**CJIS v6.1 Reference:** Physical and Environmental Protection (PE) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -760,7 +760,7 @@ FedRAMP High requires organizations to define and control alternate work sites. 
 
 FedRAMP High is satisfied by documenting the types of alternate work sites allowed and the controls applied at those sites. The controls are left to the organization's discretion based on its risk assessment. For a typical FedRAMP-authorized cloud service, this often means: VPN required for remote access, endpoint protection on managed devices, and organizational policy prohibiting CJI storage on unmanaged devices. The baseline does not prescribe specific authentication strengths, specific VPN configurations, or specific BYOD restrictions.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS replaces the organizational discretion with specific prescriptive controls for remote CJI access. The delta recognizes that physical location security — which provides a layer of protection in a police station — cannot be assumed at alternate work sites:
 
@@ -820,7 +820,7 @@ An auditor will expect to see:
 
 **NIST 800-53 Rev 5 Control:** Provide security and privacy literacy training to system users as part of initial training for new users and at organization-defined frequency thereafter; update training content at organization-defined frequency; and incorporate lessons learned from security incidents into training content.
 
-**CJIS v6.0 Reference:** Section 5.2 (Security Awareness Training)
+**CJIS v6.1 Reference:** Awareness and Training (AT) family
 
 #### FedRAMP High Baseline Requirement
 
@@ -833,7 +833,7 @@ FedRAMP High requires security and privacy literacy training for all system user
 
 FedRAMP High is satisfied by providing annual security and privacy awareness training covering general topics (phishing, password hygiene, incident reporting, data handling). The baseline does not prescribe specific content topics beyond the general security/privacy scope, and it does not set a specific initial training deadline — initial training is required but the timeline is often "as part of onboarding" or similar.
 
-#### CJIS v6.0 Delta
+#### CJIS v6.1 Delta
 
 CJIS adds specific requirements around training timing and content, but — notably — the refresh *frequency* is actually less strict than FedRAMP:
 
@@ -842,7 +842,7 @@ CJIS adds specific requirements around training timing and content, but — nota
 - **CJIS-specific content requirements** — the training content must explicitly cover:
   - **CJI handling and dissemination rules** — what constitutes CJI, how it may be used, who it may be shared with, and the rules around dissemination (including the 28 CFR Part 20 dissemination restrictions on criminal history record information).
   - **Security Addendum obligations** — the terms of the CJIS Security Addendum (PS-6), including personal accountability, sanctions for violations, and the individual's responsibilities under the addendum.
-  - **Incident reporting requirements for CJI** — the CJIS incident reporting chain to the state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 IR-6, page 171) and the user's role in reporting suspected incidents.
+  - **Incident reporting requirements for CJI** — the CJIS incident reporting chain to the state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6, page 171) and the user's role in reporting suspected incidents.
   - **Sanctions for policy violations** — the consequences of CJIS policy violations, which can include termination, criminal prosecution, and loss of certification. CJIS violations are not just administrative — they can be federal crimes under 18 USC 2721 (Driver's Privacy Protection Act) or state-specific criminal statutes for misuse of criminal justice data.
 - **Training tied to the access authorization chain** — CJIS security awareness training status must be tracked per individual with CJI access. Expired or never-completed training is grounds for access suspension. This creates a dependency: CJI access (AC-2) depends on current training (AT-2), just as it depends on current background check (PS-3) and signed Security Addendum (PS-6).
 
@@ -850,7 +850,7 @@ CJIS adds specific requirements around training timing and content, but — nota
 
 #### Implementation Guidance
 
-1. **Develop or acquire CJIS-specific training content.** Create training content covering the four required topic areas (CJI handling, Security Addendum, incident reporting, sanctions). Content sources include: state CSA-provided training materials (some states publish or distribute CJIS training content), commercial CJIS training vendors, or in-house developed content based on CJIS Security Policy v6.0 Section 5.2 and related sections. Ensure content is updated when CJIS policy changes (v6.0 content must reflect current requirements, not v5.x).
+1. **Develop or acquire CJIS-specific training content.** Create training content covering the four required topic areas (CJI handling, Security Addendum, incident reporting, sanctions). Content sources include: state CSA-provided training materials (some states publish or distribute CJIS training content), commercial CJIS training vendors, or in-house developed content based on the CJIS Security Policy v6.1 Awareness and Training (AT) family. Ensure content is updated when CJIS policy changes (content must reflect current v6.x requirements, not v5.x).
 2. **Track training status per individual with CJI access.** Maintain a training tracking system that records, for each CJI-authorized user: date of initial CJIS training completion, date of most recent biennial refresh, training content version, and completion status. Integrate the tracking system with the CJI-authorized user roster (from AC-2 implementation guidance) so training status is part of the quarterly access review.
 3. **Implement the 6-month initial training deadline.** Create an automated workflow that flags CJI-authorized users who have not completed initial CJIS training within 6 months of access grant. The workflow should: send reminder notifications at 3, 5, and 6 months after access grant; escalate to the user's manager and the CJIS Systems Officer if training is not completed by the 6-month deadline; and automatically suspend CJI access upon expiration.
 
@@ -872,7 +872,7 @@ An auditor will expect to see:
 - **Evidence of biennial refresher compliance** — refresh dates showing no gaps exceeding 2 years
 - **Training tracking system configuration** showing the deadline enforcement (6-month initial, 2-year refresh) and notification workflows
 - **Access suspension records** for personnel whose training lapsed and whose CJI access was suspended as a consequence
-- **Training content update records** showing content is refreshed when CJIS policy changes (e.g., v5.x to v6.0 transition)
+- **Training content update records** showing content is refreshed when CJIS policy changes (e.g., v5.x to v6.x transition)
 
 #### Key Considerations
 
@@ -883,15 +883,15 @@ An auditor will expect to see:
 - **Integration with the prerequisite chain.** CJIS access authorization depends on four prerequisites being satisfied: PS-3 (background check), PS-6 (Security Addendum), IA-2 (Advanced Authentication enrolled), and AT-2 (training current). During AC-2 quarterly reviews, all four prerequisites must be verified. If any is out of compliance, access must be suspended until remediated. AT-2 is the most likely to lapse quietly because training has an expiration date and personnel may not be actively tracking it.
 - **Role-specific training considerations.** CJIS training requirements apply to all personnel with CJI access, but the level of detail may vary by role. A sworn officer querying NCIC needs different emphasis than a database administrator with logical access to CJI at rest. Consider role-based training tracks within the CJIS training program, with shared core content on dissemination rules, Security Addendum, and sanctions, and role-specific content on handling CJI in the user's operational context.
 - **Phishing simulation integration.** If the organization conducts phishing simulations as part of awareness techniques (at-02_odp.05), ensure the simulations include CJI-relevant scenarios (e.g., fake credentials prompts for CJI systems, fake communications purporting to be from the CJIS Systems Officer). Generic phishing simulations do not reflect the threat landscape for law enforcement users.
-- **Content versioning.** CJIS Security Policy has evolved (v5.x to v6.0 was a significant update with alignment to NIST 800-53 Rev 5). Training content must be versioned and updated when policy changes. An organization delivering 2026 training with 2022-era content has not satisfied the content update requirement (at-02_odp.06).
+- **Content versioning.** CJIS Security Policy has evolved (v5.x to v6.x was a significant update with alignment to NIST 800-53 Rev 5). Training content must be versioned and updated when policy changes. An organization delivering 2026 training with 2022-era content has not satisfied the content update requirement (at-02_odp.06).
 
 ---
 
 ## Control-Level Gaps
 
-This section documents controls present in the CJIS v6.0 baseline but absent from the FedRAMP High baseline. Unlike the implementation-level deltas above, where the control exists in both baselines and CJIS imposes stricter parameters, these are entirely new controls a FedRAMP High environment must implement to satisfy CJIS.
+This section documents controls present in the CJIS v6.1 baseline but absent from the FedRAMP High baseline. Unlike the implementation-level deltas above, where the control exists in both baselines and CJIS imposes stricter parameters, these are entirely new controls a FedRAMP High environment must implement to satisfy CJIS.
 
-Control-level gap candidates were initially identified by OSCAL baseline comparison between the CJIS v6.0 baseline (302 controls in tooling output) and the FedRAMP High baseline (410 controls). Tooling flagged 15 CJIS-only candidates. Verification against the published CJIS Security Policy v6.0 document (FBI CJIS Division, 2024-12-27) confirmed 12 of these as present in the v6.0 control set; three tooling-flagged candidates (SI-18, SI-18.4, SI-19 from the NIST 800-53 Rev 5 privacy overlay) are not in the published v6.0 control set and are therefore excluded from the analysis. The 12 verified gap controls cluster around NIST 800-53 Rev 5 privacy requirements that CJIS v6.0 did adopt and FedRAMP High does not include.
+Control-level gap candidates were initially identified by OSCAL baseline comparison between the CJIS v6.1 baseline (302 controls in tooling output) and the FedRAMP High baseline (410 controls). Tooling flagged 15 CJIS-only candidates. Verification against the published CJIS Security Policy v6.0 document (FBI CJIS Division, 2024-12-27) confirmed 12 of these as present in the v6.0 control set; three tooling-flagged candidates (SI-18, SI-18.4, SI-19 from the NIST 800-53 Rev 5 privacy overlay) are not in the published v6.0 control set and are therefore excluded from the analysis. Re-verification against v6.1 (released June 25, 2026) confirms both findings: the 12 gap controls remain in the v6.1 List of Priorities, and v6.1 removed SI-18/SI-19 from the list entirely. The 12 verified gap controls cluster around NIST 800-53 Rev 5 privacy requirements that CJIS v6.1 did adopt and FedRAMP High does not include.
 
 Documentation for each control (baseline text, CJIS relevance, implementation guidance, evidence required) is grouped by cluster:
 
@@ -908,17 +908,17 @@ OSCAL data for each control is captured in `data/cjis-overlay.json` with the `ga
 
 **NIST 800-53 Rev 5 Control:** Limit personally identifiable information being processed in the information life cycle to the following elements of personally identifiable information: [organization-defined elements of PII].
 
-**CJIS v6.0 Reference:** Information Management privacy overlay; applies to CJI as a class of sensitive PII.
+**CJIS v6.1 Reference:** Information Management privacy overlay; applies to CJI as a class of sensitive PII.
 
 #### FedRAMP High Baseline Requirement
 
 Not included at this enhancement level. FedRAMP High includes the SI-12 base control (information management and retention, satisfied via NARA records retention schedules and organizational procedures) but does not include the privacy enhancement SI-12.1. FedRAMP High addresses PII through access controls (AC family), security and privacy attributes (AC-16), and physical access (PE-2) rather than by imposing a lifecycle-wide PII minimization requirement.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Controls must actively limit the PII elements processed across the CJI information lifecycle (creation, collection, use, processing, storage, maintenance, dissemination, disclosure, disposition) to an organization-defined list. The requirement is data minimization: only process PII elements required for operational purposes; exclude elements not operationally needed even when they are technically available.
 
-CJI qualifies as PII because it includes direct identifiers (name, date of birth, SSN, biometrics) and criminal history data tied to identifiable individuals. CJIS v6.0 imports SI-12.1 to apply the minimization principle to CJI.
+CJI qualifies as PII because it includes direct identifiers (name, date of birth, SSN, biometrics) and criminal history data tied to identifiable individuals. CJIS v6.1 imports SI-12.1 to apply the minimization principle to CJI.
 
 #### Implementation Guidance
 
@@ -950,13 +950,13 @@ CJI qualifies as PII because it includes direct identifiers (name, date of birth
 
 **NIST 800-53 Rev 5 Control:** Use the following techniques to minimize the use of personally identifiable information for research, testing, or training: [organization-defined techniques].
 
-**CJIS v6.0 Reference:** Information Management privacy overlay; applies to CJI in non-production contexts.
+**CJIS v6.1 Reference:** Information Management privacy overlay; applies to CJI in non-production contexts.
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High includes general development safeguards (CM-4 security impact analysis, SA-3 system development life cycle) but does not require PII minimization in test, training, or research environments. Production data in test environments is a common anti-pattern that is not explicitly prohibited by FedRAMP alone.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Apply defined techniques to minimize PII use in non-production contexts (research, testing, training). The control recognizes that these contexts typically do not require real production PII to fulfill their purpose, and that using real PII in them multiplies exposure surface area (developer laptops, training rooms, research outputs, shared test environments).
 
@@ -985,7 +985,7 @@ Techniques in scope:
 #### Key Considerations
 
 - **Minimization is a technique selection, not a binary.** The control requires defining techniques; the CSP chooses which apply to which context. Synthetic-data-only is the strongest posture. Masking is weaker because re-identification may be possible with auxiliary information. Document the technique per context.
-- **De-identification consistency.** When de-identification is selected as the technique, apply it consistently across datasets. SI-19 formalizes de-identification as a separate control in NIST 800-53 Rev 5 but is not in the CJIS v6.0 control set; CJIS treats de-identification as one of several SI-12.2 minimization techniques rather than an independent obligation.
+- **De-identification consistency.** When de-identification is selected as the technique, apply it consistently across datasets. SI-19 formalizes de-identification as a separate control in NIST 800-53 Rev 5 but is not in the CJIS v6.1 control set; CJIS treats de-identification as one of several SI-12.2 minimization techniques rather than an independent obligation.
 - **Training environments are often overlooked.** Agencies running CJIS training often use a stripped-down copy of production. Stripped-down is not minimized unless direct identifiers are removed by an explicit technique.
 - **CSP dev/test boundary.** If the CSP runs dev/test environments on behalf of agencies, the CSP inherits the SI-12.2 obligation. Ensure customer CJI does not flow into CSP dev/test and that vendor-side test data is synthetic or masked.
 
@@ -995,13 +995,13 @@ Techniques in scope:
 
 **NIST 800-53 Rev 5 Control:** Use the following techniques to dispose of, destroy, or erase information following the retention period: [organization-defined techniques].
 
-**CJIS v6.0 Reference:** Information Management privacy overlay; disposal of CJI and CJI-bearing artifacts (logs, backups, archives).
+**CJIS v6.1 Reference:** Information Management privacy overlay; disposal of CJI and CJI-bearing artifacts (logs, backups, archives).
 
 #### FedRAMP High Baseline Requirement
 
 Not included at the disposal-enhancement level. FedRAMP High includes MP-6 (media sanitization) for physical media disposal and SC-28 (protection of information at rest) for storage encryption. Neither imposes an explicit logical information disposal mandate — the active erasure or cryptographic destruction of information records when the retention period expires. FedRAMP's SI-12 base control treats retention generally without specifying how disposal executes at end-of-retention.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Use defined techniques to dispose of, destroy, or erase information at the end of the retention period. Scope includes originals, copies, archived records, and system logs that may contain PII or CJI. Disposal must be an active, scheduled, and evidentiable process rather than an informal "we delete when we clean up."
 
@@ -1040,13 +1040,13 @@ Typical disposal techniques:
 
 **NIST 800-53 Rev 5 Control:** Limit personally identifiable information contained in audit records to the following elements identified in the privacy risk assessment: [organization-defined elements].
 
-**CJIS v6.0 Reference:** PII-in-log minimization; intersects with AU-6 (implementation-level delta requiring weekly review and 1-year retention).
+**CJIS v6.1 Reference:** PII-in-log minimization; intersects with AU-6 (implementation-level delta requiring weekly review and 1-year retention).
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High's AU-3 base control requires specific content in audit records (timestamp, event type, source, outcome, identity) but does not impose PII minimization within those records. FedRAMP audit records can therefore contain significant PII, bounded only by the AU-3 minimums and organizational practice.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Audit records must contain only the PII elements identified as necessary in the privacy risk assessment. The intent is that log contents themselves do not become a secondary privacy exposure. For CJI, audit logs typically need to record who queried what case, when, from where, and the action's outcome — not the full query response payload.
 
@@ -1078,13 +1078,13 @@ Audit records must contain only the PII elements identified as necessary in the 
 
 **NIST 800-53 Rev 5 Control:** Limit personally identifiable information contained in visitor access records to the following elements identified in the privacy risk assessment: [organization-defined elements].
 
-**CJIS v6.0 Reference:** PII-in-visitor-log minimization; applies to facilities where CJI is stored or processed.
+**CJIS v6.1 Reference:** PII-in-visitor-log minimization; applies to facilities where CJI is stored or processed.
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High's PE-8 base control requires visitor access records to be maintained for a defined period, with defined content (name, purpose of visit, name of escort, date/time). FedRAMP does not require minimizing PII within those records beyond the baseline content.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Visitor access records for facilities hosting CJI must contain only the PII elements identified in the privacy risk assessment as operationally necessary. Excess identifiers (for example, SSN, DOB, full driver's license number) must not be collected or retained in visitor logs if they are not required for the access control purpose.
 
@@ -1115,17 +1115,17 @@ Visitor access records for facilities hosting CJI must contain only the PII elem
 
 **NIST 800-53 Rev 5 Control:** Provide [organization-defined mechanisms] to enable individuals to have access to the following elements of their personally identifiable information: [organization-defined elements].
 
-**CJIS v6.0 Reference:** Subject access to own PII; law-enforcement records exemption recognized in supplemental guidance.
+**CJIS v6.1 Reference:** Subject access to own PII; law-enforcement records exemption recognized in supplemental guidance.
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High does not require a subject-access mechanism. U.S. subject access rights are sector-specific (Privacy Act for federal agency records, HIPAA for health, GLBA for financial) and FedRAMP does not generalize them.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Provide a mechanism enabling individuals to access the organization-defined elements of their own PII. For CJI specifically, the NIST supplemental guidance explicitly recognizes that law enforcement records may be exempt from disclosure under Privacy Act section (j)(2) or state analogues. The control therefore operates as: provide the mechanism; apply the statutory exemptions when responding.
 
-AC-3.14 addresses the access side of subject rights (I want to see what you have about me). The correction and deletion side is handled by state expungement law and agency-specific processes rather than by a dedicated CJIS v6.0 control. Individuals typically exercise access first and pursue correction through the relevant state mechanism if inaccuracies are found.
+AC-3.14 addresses the access side of subject rights (I want to see what you have about me). The correction and deletion side is handled by state expungement law and agency-specific processes rather than by a dedicated CJIS v6.1 control. Individuals typically exercise access first and pursue correction through the relevant state mechanism if inaccuracies are found.
 
 #### Implementation Guidance
 
@@ -1155,13 +1155,13 @@ AC-3.14 addresses the access side of subject rights (I want to see what you have
 
 **NIST 800-53 Rev 5 Control:** For systems that process personally identifiable information: apply the following processing rules to data elements of personally identifiable information: [organization-defined rules]; monitor for permitted processing at external interfaces and at key internal boundaries; document each processing exception; and review and remove exceptions that are no longer supported.
 
-**CJIS v6.0 Reference:** Boundary-processing rules for CJI; enforcement and monitoring at system interfaces.
+**CJIS v6.1 Reference:** Boundary-processing rules for CJI; enforcement and monitoring at system interfaces.
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High's SC-7 base control requires boundary protection (firewalls, DMZ architecture) but does not require PII-specific processing rules with exception tracking. FedRAMP's PII boundary posture is generic rather than PII-aware.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Systems processing CJI must:
 - Define processing rules per CJI data element (what operations are allowed: read, write, dissemination to specific destinations, transformation, retention).
@@ -1198,13 +1198,13 @@ Systems processing CJI must:
 
 **NIST 800-53 Rev 5 Control:** Provide [organization-defined personnel or roles] with initial and [organization-defined frequency] training in the employment and operation of personally identifiable information processing and transparency controls.
 
-**CJIS v6.0 Reference:** Role-based PII processing training; distinct from general awareness training (AT-2 implementation-level delta).
+**CJIS v6.1 Reference:** Role-based PII processing training; distinct from general awareness training (AT-2 implementation-level delta).
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High requires AT-3 role-based training (security responsibilities tied to role) and general awareness training (AT-2) but does not impose a specific role-based training obligation for PII processing and transparency controls. FedRAMP's role-based training focuses on security, not privacy.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Provide initial and recurring role-based training to defined personnel and roles on PII processing and transparency controls. "Processing" includes the full lifecycle (creation, collection, use, storage, dissemination, disposition); "transparency controls" include the authority to process PII, privacy policies, system of records notices, privacy impact assessments, and information-sharing agreements.
 
@@ -1241,13 +1241,13 @@ Distinguish AT-3.5 from AT-2 (the existing implementation-level delta):
 
 **NIST 800-53 Rev 5 Control:** Provide incident response training on how to identify and respond to a breach, including the organization's process for reporting a breach.
 
-**CJIS v6.0 Reference:** Breach-specific IR training; complements IR-6 implementation-level delta (reporting channels) and IR-8.1 (plan content).
+**CJIS v6.1 Reference:** Breach-specific IR training; complements IR-6 implementation-level delta (reporting channels) and IR-8.1 (plan content).
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High's IR-2 base requires general incident response training. FedRAMP does not require training specifically on breach identification and response, where "breach" is narrowed to PII-involving incidents.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Provide incident response training specifically on breach identification, response, and reporting. A breach for PII purposes is loss of control, compromise, unauthorized disclosure, unauthorized acquisition, or access by an unauthorized user — or authorized user acting outside authorized purposes. For CJIS, any incident that exposes or potentially exposes unencrypted CJI qualifies.
 
@@ -1255,7 +1255,7 @@ Training content covers: recognizing a breach versus a lesser incident, reportin
 
 #### Implementation Guidance
 
-1. **Incorporate into existing IR training (IR-2 base).** Most CSPs/agencies already run IR training annually. Add a breach module covering breach definition, recognition, reporting channels (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 IR-6 page 171), and time-sensitive obligations.
+1. **Incorporate into existing IR training (IR-2 base).** Most CSPs/agencies already run IR training annually. Add a breach module covering breach definition, recognition, reporting channels (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6 page 171), and time-sensitive obligations.
 2. **Run breach-specific tabletop exercises.** Scenario: an administrator's credentials are compromised and are observed to have queried CJI for non-case-related purposes. Walk the team through detection, containment, assessment of scope, notification triggering, and remediation.
 3. **Cover the "authorized user, unauthorized purpose" case.** Many CJI breaches are insider misuse (looking up an ex-spouse, a public figure, a neighbor). Training must address this as a breach, not just external compromises.
 4. **Cover reporting-to-individuals considerations.** When the breach affects identifiable individuals, the IR team must engage with the IR-8.1 notice-determination process. Training connects IR-2.3 to IR-8.1 operationally.
@@ -1273,7 +1273,7 @@ Training content covers: recognizing a breach versus a lesser incident, reportin
 - **Insider misuse is the underrecognized breach class.** Law enforcement agencies have a long record of personnel running queries on family, romantic interests, public figures, or people involved in off-duty disputes. These are breaches. Training must frame them as such and connect to sanctions (Security Addendum commitments, 18 USC 2721 criminal liability where applicable).
 - **The 72-hour reporting instinct.** Many staff associate privacy breach reporting with the GDPR 72-hour window. CJIS has its own reporting timeframes (typically faster for initial notification to the CSO). Training should cover the specific CJIS reporting clock, not a generic privacy-law clock.
 - **Distinguish breach from incident.** Not every incident is a breach. A failed phishing attempt blocked by email filtering is an incident; a successful phishing attempt that did not expose PII may or may not be a breach depending on the data at risk. Training must cover the distinction so the team does not over-report or under-report.
-- **Ties to IR-6.** CJIS v6.0 IR-6 (page 171) requires reporting to the CSO, SIB Chief, or Interface Agency Official. IR-2.3 training reinforces the reporting chain; staff should know who to call, at what number, within what timeframe, with what information.
+- **Ties to IR-6.** CJIS v6.1 IR-6 (page 171) requires reporting to the CSO, SIB Chief, or Interface Agency Official. IR-2.3 training reinforces the reporting chain; staff should know who to call, at what number, within what timeframe, with what information.
 
 ---
 
@@ -1281,23 +1281,23 @@ Training content covers: recognizing a breach versus a lesser incident, reportin
 
 **NIST 800-53 Rev 5 Control:** Include the following in the Incident Response Plan for breaches involving personally identifiable information: a process to determine if notice to individuals or other organizations is needed; an assessment process to determine the extent of harm, embarrassment, inconvenience, or unfairness to affected individuals and any mechanisms to mitigate such harms; and identification of applicable privacy requirements.
 
-**CJIS v6.0 Reference:** Breach-specific IR Plan content; operates alongside IR-6 (reporting channels) and IR-2.3 (training) to close the breach-response loop.
+**CJIS v6.1 Reference:** Breach-specific IR Plan content; operates alongside IR-6 (reporting channels) and IR-2.3 (training) to close the breach-response loop.
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High's IR-8 base requires an Incident Response Plan with general content (incident classes, roles, procedures, metrics). FedRAMP does not require the plan to include breach-specific process content per IR-8.1.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 The IR Plan must include three specific breach-response elements:
 1. **Notice determination process** — decide whether individuals, other organizations, or oversight bodies need to be notified; who makes the decision, using what criteria, within what timeframe.
 2. **Harm assessment process** — evaluate harm (financial, reputational, safety) to affected individuals and identify mitigation mechanisms (credit monitoring, identity protection, corrective record action).
-3. **Applicable privacy requirements identification** — catalog the privacy statutes, regulations, or policies that apply to a given breach type (for CJI: CJIS v6.0 IR-6 and IR-8(1), state breach notification statutes, Privacy Act exemptions, agency-specific requirements).
+3. **Applicable privacy requirements identification** — catalog the privacy statutes, regulations, or policies that apply to a given breach type (for CJI: CJIS v6.1 IR-6 and IR-8(1), state breach notification statutes, Privacy Act exemptions, agency-specific requirements).
 
 #### Implementation Guidance
 
 1. **Write a breach-specific appendix or section of the IR Plan.** Separate from general incident response workflow. Breaches have distinct obligations (notification, harm assessment, regulator engagement) that the general IR workflow does not address adequately.
-2. **Define the notice determination process.** Decision tree: what data was exposed, to whom, for how long, with what likelihood of misuse. Outcome: notify individuals? notify the CSO, SIB Chief, or Interface Agency Official (per CJIS v6.0 IR-6)? notify state attorney general (if state breach law applies)? notify media?
+2. **Define the notice determination process.** Decision tree: what data was exposed, to whom, for how long, with what likelihood of misuse. Outcome: notify individuals? notify the CSO, SIB Chief, or Interface Agency Official (per CJIS v6.1 IR-6)? notify state attorney general (if state breach law applies)? notify media?
 3. **Define the harm assessment process.** Inputs: nature of exposed data (criminal history, fingerprints, investigation details), affected population size and characteristics, exposure duration and visibility. Outputs: harm categorization (low/medium/high) and mitigation mechanism selection.
 4. **Catalog applicable privacy requirements per breach type.** Matrix or table: breach type (for example, unauthorized access to criminal history by insider; CJI exposed externally via misconfigured storage; third-party contractor compromise) mapped to applicable statutes and CJIS Security Policy sections.
 5. **Rehearse and revise.** The IR-8.1 content is aspirational until exercised. Run breach tabletop exercises using the plan; update based on friction observed.
@@ -1316,8 +1316,8 @@ The IR Plan must include three specific breach-response elements:
 - **Notice-to-individuals is operationally heavy.** Determining who to notify requires knowing which individuals' CJI was exposed. If the audit log did not capture the specific records accessed during the breach (interacts with AU-3.3 and AU-6), the notice scope may be unknowable. The IR-8.1 plan must either assume worst-case (notify all plausibly affected) or rely on logging evidence (integration with AU-6 implementation-level delta).
 - **Harm framing for CJI is non-standard.** Traditional breach harm framing (credit risk, identity theft) applies loosely to CJI. CJI-specific harms include public embarrassment (criminal history exposure), safety risk (witness/informant identity exposure), and judicial consequences (exposure of sealed records). Harm assessment should use CJI-specific categories, not generic PII categories.
 - **State variance in breach notification law.** State breach notification statutes vary in trigger thresholds, notice content, regulator engagement, and timing. A CSP serving multiple states must cover the union of state obligations. The applicable-privacy-requirements matrix is more complex for multi-state CSPs than for single-state agencies.
-- **CJIS v6.0 Incident Response (IR) family is the source.** The IR family in CJIS v6.0 (published policy pages 167-174) contains the breach reporting and plan content requirements. IR-6 defines the reporting chain (CSO, SIB Chief, or Interface Agency Official per v6.0 page 171) and IR-8(1) defines the breach-specific plan content. CJIS v6.0 reorganized from v5.9.x and no longer uses numbered "Section 5.X" policy areas for IR; map the IR Plan workflow to these specific v6.0 controls directly.
-- **Interplay with IR-6 implementation-level delta.** IR-6 covers who is notified per CJIS v6.0 page 171 (CSO, SIB Chief, or Interface Agency Official). IR-8.1 covers the process the plan documents for breach response. The two controls are complementary; both should be explicitly mapped in the plan.
+- **CJIS v6.1 Incident Response (IR) family is the source.** The IR family in CJIS v6.1 (published policy pages 167-174) contains the breach reporting and plan content requirements. IR-6 defines the reporting chain (CSO, SIB Chief, or Interface Agency Official per v6.1 page 171) and IR-8(1) defines the breach-specific plan content. CJIS v6.1 reorganized from v5.9.x and no longer uses numbered "Section 5.X" policy areas for IR; map the IR Plan workflow to these specific v6.1 controls directly.
+- **Interplay with IR-6 implementation-level delta.** IR-6 covers who is notified per CJIS v6.1 page 171 (CSO, SIB Chief, or Interface Agency Official). IR-8.1 covers the process the plan documents for breach response. The two controls are complementary; both should be explicitly mapped in the plan.
 
 ---
 
@@ -1325,13 +1325,13 @@ The IR Plan must include three specific breach-response elements:
 
 **NIST 800-53 Rev 5 Control:** Centrally manage [organization-defined security and privacy controls and related processes].
 
-**CJIS v6.0 Reference:** Central management of selected CJI-relevant security and privacy controls; common-controls-as-a-service model.
+**CJIS v6.1 Reference:** Central management of selected CJI-relevant security and privacy controls; common-controls-as-a-service model.
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High accepts the concept of common controls (inherited from the CSP) but does not mandate that specific controls be centrally managed. The CSP's SSP describes control inheritance; there is no FedRAMP obligation to centralize management of privacy controls specifically.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Centrally manage a defined set of security and privacy controls and related processes. The goal is organization-wide standardization: rather than each system team implementing AC-2 account management, AT-2 training, AU-6 audit review, or SI-12.3 disposal individually, the controls are managed centrally and inherited.
 
@@ -1357,7 +1357,7 @@ For CJI environments, central management typically takes one of two shapes:
 
 #### Key Considerations
 
-- **This is FedRAMP 20x territory.** FedRAMP 20x KSIs favor centrally managed, continuously monitored controls over per-system attestations. PL-9 is the NIST 800-53 Rev 5 hook that CJIS v6.0 uses for the same outcome. A CSP investing in FedRAMP 20x readiness is directly positioning for CJIS PL-9 compliance.
+- **This is FedRAMP 20x territory.** FedRAMP 20x KSIs favor centrally managed, continuously monitored controls over per-system attestations. PL-9 is the NIST 800-53 Rev 5 hook that CJIS v6.1 uses for the same outcome. A CSP investing in FedRAMP 20x readiness is directly positioning for CJIS PL-9 compliance.
 - **CSP versus agency central management boundary.** In multi-tenant CJIS deployments, the CSP centrally manages infrastructure-level controls; the agency centrally manages agency-specific processes (Security Addendum, fingerprint submission, access reviews). The boundary is contractual and must be documented.
 - **Audit efficiency.** Centrally managed controls are assessed once and inherited across all consuming systems, rather than assessed per system. This compresses audit cost and time. For agencies running multiple CJIS systems, central management is pragmatic.
 - **Central-management failure mode: brittleness.** A single centrally managed training platform outage blocks access for all consuming systems. Central management trades independence for efficiency; redundancy and continuity planning must compensate.
@@ -1369,13 +1369,13 @@ For CJI environments, central management typically takes one of two shapes:
 
 **NIST 800-53 Rev 5 Control:** Implement the privacy principle of minimization using [organization-defined processes].
 
-**CJIS v6.0 Reference:** Privacy minimization during system design and acquisition; applies before system build, not as a retrofit.
+**CJIS v6.1 Reference:** Privacy minimization during system design and acquisition; applies before system build, not as a retrofit.
 
 #### FedRAMP High Baseline Requirement
 
 Not included. FedRAMP High's SA-8 base control requires security engineering principles during development but does not require minimization as a privacy-specific engineering principle. Privacy engineering is not part of the FedRAMP High SA-family baseline posture.
 
-#### CJIS v6.0 Requirement
+#### CJIS v6.1 Requirement
 
 Implement the privacy principle of minimization — only process PII that is directly relevant and necessary, and only maintain it as long as necessary — via defined engineering processes. The control engages at system design, acquisition, and development time, not only at operational runtime.
 
@@ -1411,7 +1411,7 @@ This is the architectural counterpart to the runtime minimization controls (SI-1
 
 ### Source of truth
 
-The authoritative source for the CJIS v6.0 control set in this analysis is the published CJIS Security Policy v6.0 document (FBI CJIS Division, 2024-12-27). The control set is the list of controls referenced in the document's Section 5 (Policy and Implementation) Table of Contents.
+The authoritative source for the CJIS v6.1 control set in this analysis is the published CJIS Security Policy v6.1 document (FBI CJIS Division, 2024-12-27). The control set is the list of controls referenced in the document's Section 5 (Policy and Implementation) Table of Contents.
 
 Baseline-comparison tooling, including the usfed-compliance MCP `compare_baselines` output for `cjis-v6` vs `fedramp-high`, was used as a starting point to identify candidate implementation-level deltas and control-level gaps. Tooling output is not authoritative. When tooling output disagrees with the published document, the published document governs.
 
@@ -1419,16 +1419,16 @@ Baseline-comparison tooling, including the usfed-compliance MCP `compare_baselin
 
 Each control candidate is verified by:
 
-1. Confirming the control's presence in the CJIS v6.0 Section 5 ToC.
+1. Confirming the control's presence in the CJIS v6.1 Section 5 ToC.
 2. Confirming the control's baseline status in FedRAMP High (either present and differing in parameters — implementation-level delta — or absent — control-level gap).
-3. Reading the control text in CJIS v6.0 to confirm the nature of the delta or gap matches the analysis.
+3. Reading the control text in CJIS v6.1 to confirm the nature of the delta or gap matches the analysis.
 
 ### Known tooling-versus-document discrepancies discovered during build
 
-During the initial build of this gap analysis, three controls (SI-18, SI-18.4, SI-19 from the NIST 800-53 Rev 5 privacy overlay) appeared in tooling output as CJIS-only baseline controls. Verification against the published v6.0 document found that these three are not in the v6.0 control set. They are excluded from the analysis. The cluster "Privacy, Quality and De-identification" was therefore removed from the scope; the remaining privacy cluster is "Privacy, Retention" (SI-12.1, SI-12.2, SI-12.3).
+During the initial build of this gap analysis, three controls (SI-18, SI-18.4, SI-19 from the NIST 800-53 Rev 5 privacy overlay) appeared in tooling output as CJIS-only baseline controls. Verification against the published v6.0 document found that these three are not in the v6.0 control set, and v6.1 removed them from the List of Priorities entirely. They are excluded from the analysis. The cluster "Privacy, Quality and De-identification" was therefore removed from the scope; the remaining privacy cluster is "Privacy, Retention" (SI-12.1, SI-12.2, SI-12.3).
 
-This discrepancy is documented here as a methodology caution: future contributors should verify tooling claims against the published v6.0 document before extending the analysis.
+This discrepancy is documented here as a methodology caution: future contributors should verify tooling claims against the published v6.x document before extending the analysis.
 
 ### Section references
 
-CJIS v6.0 reorganized from v5.9.x. Prior versions used numbered Policy Areas ("Section 5.3 Incident Response", "Section 5.13 Mobile Devices"). Version 6.0 organizes Section 5 by NIST 800-53 Rev 5 control family (AC, AT, AU, CA, CM, CP, IA, IR, MA, MP, PE, PL, PS, RA, SA, SC, SI, SR) with Policy Area 1 (Information Exchange Agreements) and Policy Area 20 (Mobile Devices) as the only numbered Policy Areas retained. References in this analysis use control identifiers (e.g., IR-6, SI-12(1)) and cite page numbers from the published document rather than v5.9.x-style Section 5.X numbering.
+CJIS v6.1 reorganized from v5.9.x. Prior versions used numbered Policy Areas ("Section 5.3 Incident Response", "Section 5.13 Mobile Devices"). Version 6.x organizes Section 5 by NIST 800-53 Rev 5 control family (AC, AT, AU, CA, CM, CP, IA, IR, MA, MP, PE, PL, PS, RA, SA, SC, SI, SR) with Policy Area 1 (Information Exchange Agreements) and Policy Area 20 (Mobile Devices) as the only numbered Policy Areas retained. References in this analysis use control identifiers (e.g., IR-6, SI-12(1)) and cite page numbers from the published document rather than v5.9.x-style Section 5.X numbering.

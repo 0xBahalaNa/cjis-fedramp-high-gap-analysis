@@ -1,6 +1,6 @@
 """Generate a markdown gap report from the CJIS overlay OSCAL data.
 
-Reads an OSCAL profile overlay (CJIS v6.0 on FedRAMP High) and produces a
+Reads an OSCAL profile overlay (CJIS v6.1 on FedRAMP High) and produces a
 control-by-control gap report in markdown, formatted for GRC engineers and
 CJIS auditors.
 
@@ -129,7 +129,7 @@ def format_report(data: dict, deltas: list[dict]) -> str:
     out.append("")
     out.append(
         f"Generated from `{DEFAULT_INPUT.relative_to(REPO_ROOT)}`. "
-        f"CJIS Security Policy v{cjis_version} takes effect {effective_date}."
+        f"CJIS Security Policy v{cjis_version} has been the default audit baseline since {effective_date}."
     )
     out.append("")
 
@@ -174,7 +174,7 @@ def format_report(data: dict, deltas: list[dict]) -> str:
                 out.append("")
                 out.append(d["baseline"])
                 out.append("")
-                out.append("**CJIS v6.0 Delta**")
+                out.append("**CJIS v6.1 Delta**")
                 out.append("")
                 out.append(d["addition"])
                 out.append("")
@@ -193,7 +193,7 @@ def format_report(data: dict, deltas: list[dict]) -> str:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=(
-            "Generate a markdown gap report from the CJIS v6.0 overlay OSCAL file."
+            "Generate a markdown gap report from the CJIS v6.1 overlay OSCAL file."
         )
     )
     parser.add_argument(

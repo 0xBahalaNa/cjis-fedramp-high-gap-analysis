@@ -3,28 +3,28 @@
 ![OSCAL](https://img.shields.io/badge/OSCAL-Profile-1c5b94?style=flat)
 ![NIST 800-53](https://img.shields.io/badge/NIST-800--53%20Rev%205-004990?style=flat)
 ![FedRAMP](https://img.shields.io/badge/FedRAMP-High%20Baseline-0071bc?style=flat)
-![CJIS](https://img.shields.io/badge/CJIS-Security%20Policy%20v6.0-cc0000?style=flat)
+![CJIS](https://img.shields.io/badge/CJIS-Security%20Policy%20v6.1-cc0000?style=flat)
 
-# CJIS v6.0 to FedRAMP High Gap Analysis
+# CJIS v6.1 to FedRAMP High Gap Analysis
 
 I built this to answer a narrow question: if a CSP already holds FedRAMP High, which
-CJIS Security Policy v6.0 requirements still sit outside that baseline? CJIS v6.0
-(published Dec 27, 2024) uses NIST 800-53 Rev 5. v5.9.5 stayed the scored audit
-standard through March 31, 2026; v6.0 is the default audit baseline from April 1,
-2026. The repo holds a FedRAMP High OSCAL profile, a CJIS overlay that records each
+CJIS Security Policy v6.1 requirements still sit outside that baseline? CJIS v6.x
+uses NIST 800-53 Rev 5 and has been the default audit baseline since April 1, 2026;
+v6.1 (released June 25, 2026) is the current revision. The repo holds a FedRAMP High OSCAL profile, a CJIS overlay that records each
 delta, a hand-authored narrative in `analysis/gap-analysis.md`, and a generator that
 rebuilds `output/gap-report.md`.
 
 The tables below list 13 implementation-level deltas and 12 control-level gaps. That
-is the scoped set I verified against the published v6.0 text; it is not a claim that
+is the scoped set I verified against the published v6.0 text and re-checked against
+the v6.1 List of Priorities; it is not a claim that
 every possible CJIS nuance is catalogued.
 
 ## Architecture Overview
 
 ```mermaid
 graph TD
-    FR["data/fedramp-high-profile.json<br/>FedRAMP High OSCAL profile"] --> OV["data/cjis-overlay.json<br/>CJIS v6.0 overlay on FedRAMP High"]
-    CJ["CJIS Security Policy v6.0<br/>NIST 800-53 Rev 5"] -. informs .-> OV
+    FR["data/fedramp-high-profile.json<br/>FedRAMP High OSCAL profile"] --> OV["data/cjis-overlay.json<br/>CJIS v6.1 overlay on FedRAMP High"]
+    CJ["CJIS Security Policy v6.1<br/>NIST 800-53 Rev 5"] -. informs .-> OV
     OV --> DELTA["profile.modify.alters<br/>cjis-delta parts"]
     DELTA --> IMP["gap-type: implementation-delta<br/>stricter params / scope"]
     DELTA --> CTRL["gap-type: control-level-gap<br/>CJIS-only controls"]
@@ -46,7 +46,7 @@ overlay JSON.
 ## Why This Matters
 
 Both frameworks sit on NIST 800-53 Rev 5, so a FedRAMP High ATO covers most of
-CJIS v6.0. Most is not all. CJIS tightens screening, authentication, encryption key
+CJIS v6.1. Most is not all. CJIS tightens screening, authentication, encryption key
 custody, audit review cadence, and several privacy controls that FedRAMP High never
 picked up. If you treat the ATO as equivalent without walking the deltas, the miss
 shows up in a CJIS audit as missing evidence or missing controls, not as a small
@@ -57,16 +57,16 @@ regenerable.
 
 ## Gap Summary
 
-The gap analysis distinguishes two categories of gaps between CJIS v6.0 and FedRAMP High:
+The gap analysis distinguishes two categories of gaps between CJIS v6.1 and FedRAMP High:
 
 - **Implementation-level deltas** - controls present in both baselines, where CJIS imposes stricter parameters, scope, or methodology (e.g., CJIS requires fingerprint-based background checks for PS-3, while FedRAMP allows the organization to define screening method).
-- **Control-level gaps** - controls present in the CJIS v6.0 baseline but absent from FedRAMP High entirely. An agency running FedRAMP High must implement these from scratch to satisfy CJIS. These are concentrated in the NIST 800-53 Rev 5 privacy overlay, reflecting CJI's status as sensitive personal data.
+- **Control-level gaps** - controls present in the CJIS v6.1 baseline but absent from FedRAMP High entirely. An agency running FedRAMP High must implement these from scratch to satisfy CJIS. These are concentrated in the NIST 800-53 Rev 5 privacy overlay, reflecting CJI's status as sensitive personal data.
 
 ### Implementation-Level Deltas
 
-Controls where CJIS v6.0 imposes stricter requirements than the FedRAMP High baseline:
+Controls where CJIS v6.1 imposes stricter requirements than the FedRAMP High baseline:
 
-| NIST 800-53 Rev 5 | FedRAMP High | CJIS v6.0 Delta | Category |
+| NIST 800-53 Rev 5 | FedRAMP High | CJIS v6.1 Delta | Category |
 |--------------------|:------------:|------------------|----------|
 | PS-3 Personnel Screening | Background investigation | Fingerprint-based background check (state/national) required for all CJI access | Personnel |
 | PS-6 Access Agreements | Signed rules of behavior | CJIS Security Addendum required before CJI access | Personnel |
@@ -78,15 +78,15 @@ Controls where CJIS v6.0 imposes stricter requirements than the FedRAMP High bas
 | SC-28 Protection of Info at Rest | Encryption at rest required | Agency-managed CMK required for CJI at rest; agency retains key revocation authority | Encryption |
 | AU-6 Audit Record Review | Review/analysis per baseline | Weekly audit log review; 1-year minimum retention for CJI-related events | Audit |
 | AC-2 Account Management | Account lifecycle per baseline | Quarterly access reviews for CJI-authorized users | Access Control |
-| IR-6 Incident Reporting | Report to US-CERT | Additional reporting to state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 IR-6, page 171) within state-defined timeframes | Incident Response |
+| IR-6 Incident Reporting | Report to US-CERT | Additional reporting to state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6, page 171) within state-defined timeframes | Incident Response |
 | PE-17 Alternate Work Site | Authorize alternate sites | Specific controls for remote CJI access locations | Physical/Environmental |
 | AT-2 Awareness Training | Annual security training | CJIS Security Awareness Training within 6 months of CJI access, biennial refresher | Training |
 
 ### Control-Level Gaps
 
-Controls present in the CJIS v6.0 published control set (FBI CJIS Division, 2024-12-27) that are not in FedRAMP High. Baseline comparison tooling flagged 15 CJIS-only candidates; verification against the published v6.0 document confirmed 12. The three excluded candidates (SI-18, SI-18.4, SI-19 from the NIST 800-53 Rev 5 privacy overlay) are not in the v6.0 control set. See `analysis/gap-analysis.md` Methodology section for details.
+Controls present in the CJIS v6.x published control set that are not in FedRAMP High. Baseline comparison tooling flagged 15 CJIS-only candidates; verification against the published v6.0 document confirmed 12. The three excluded candidates (SI-18, SI-18.4, SI-19 from the NIST 800-53 Rev 5 privacy overlay) are not in the v6.x control set — v6.1 removed them from the List of Priorities entirely, confirming the exclusion. See `analysis/gap-analysis.md` Methodology section for details.
 
-| NIST 800-53 Rev 5 | Family | CJIS v6.0 Requirement | Cluster |
+| NIST 800-53 Rev 5 | Family | CJIS v6.1 Requirement | Cluster |
 |--------------------|--------|------------------------|---------|
 | SI-12.1 Limit PII Elements | System and Information Integrity | Limit PII elements processed across CJI lifecycle per org-defined list | Privacy, Retention |
 | SI-12.2 Minimize PII in Testing, Training, Research | System and Information Integrity | De-identification, synthetic data, or masking for non-production CJI | Privacy, Retention |
@@ -121,15 +121,17 @@ shape so a later continuous check can re-run the same comparison when either
 baseline moves. The hand narrative stays the human-readable half; the overlay is
 the machine-readable half.
 
-## CJIS v6.0 Context
+## CJIS v6.x Context
 
 CJIS Security Policy v6.0 was published Dec 27, 2024 and finished the move onto
-NIST 800-53 Rev 5. Rollout is phased: v5.9.5 scored through March 31, 2026; v6.0
-is the go-forward baseline from April 1, 2026 (FBI formal v6.0 auditing began
-Oct 1, 2025); Priority-1 controls including MFA have been sanctionable since
-Oct 1, 2024; Priority 2-4 are fully enforceable Oct 1, 2027 (state CSA timing
-varies; Texas, for example, runs v5.9.5 through March 31, 2027). Changes that
-matter for this gap set:
+NIST 800-53 Rev 5. v6.1 (released June 25, 2026) incorporates the Calendar Year
+2025 corrections and additions approved by the APB; it keeps the same modernized
+structure and, for this gap set, changes nothing beyond dropping SI-18/SI-19 from
+the List of Priorities. Rollout is phased: v5.9.5 scored through March 31, 2026;
+v6.x is the default audit baseline from April 1, 2026; Priority-1 controls
+including MFA have been sanctionable since Oct 1, 2024; Priority 2-4 are fully
+enforceable Oct 1, 2027 (state CSA timing varies; Texas, for example, runs
+v5.9.5 through March 31, 2027). Changes that matter for this gap set:
 
 - Full adoption of the NIST 800-53 Rev 5 control catalog (previously mapped to Rev 4)
 - Updated Advanced Authentication requirements aligned with NIST SP 800-63-3
@@ -146,7 +148,7 @@ here in a way it was not under v5.9.x.
 │   └── gap-analysis.md             # Control-by-control delta analysis
 ├── data/
 │   ├── fedramp-high-profile.json   # FedRAMP High baseline (OSCAL profile)
-│   └── cjis-overlay.json           # CJIS v6.0 overlay (OSCAL profile)
+│   └── cjis-overlay.json           # CJIS v6.1 overlay (OSCAL profile)
 ├── docs/
 │   └── architecture.mmd            # Mermaid source (sync with README fence)
 ├── scripts/

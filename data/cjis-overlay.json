@@ -2,15 +2,15 @@
   "profile": {
     "uuid": "3460ddad-265e-4ab3-b4d3-0e45204a9326",
     "metadata": {
-      "title": "CJIS Security Policy v6.0 Overlay on FedRAMP High",
+      "title": "CJIS Security Policy v6.1 Overlay on FedRAMP High",
       "last-modified": "2026-04-01T00:00:00Z",
       "version": "1.0.0",
       "oscal-version": "1.1.2",
-      "remarks": "OSCAL overlay capturing controls where CJIS Security Policy v6.0 (December 2024) imposes requirements beyond the FedRAMP High baseline. CJIS v6.0 (published Dec 27, 2024) aligns with NIST 800-53 Rev 5 and phases in rather than switching on a single date: v5.9.5 was the scored audit standard through March 31, 2026 and v6.0 is the default audit baseline from April 1, 2026, with modernized Priority 2-4 controls fully enforceable Oct 1, 2027 (timing varies by state CSA). Each cjis-delta part includes four structured sub-parts: baseline-requirement, cjis-addition, implementation-guidance, and evidence-required. Each cjis-delta part carries a gap-type prop with one of two values: implementation-delta (control present in both baselines; CJIS imposes stricter parameters, scope, or methodology) or control-level-gap (control present in CJIS v6.0 but absent from FedRAMP High; represents a net-new control for FedRAMP-authorized environments seeking CJIS compliance). A delta-category prop further groups controls by topical cluster (personnel, authentication, encryption, privacy-retention, pii-limitation, etc.).",
+      "remarks": "OSCAL overlay capturing controls where CJIS Security Policy v6.1 (released June 25, 2026) imposes requirements beyond the FedRAMP High baseline. CJIS v6.x aligns with NIST 800-53 Rev 5 and has been the default audit baseline since April 1, 2026 (v5.9.5 sunset March 31, 2026), with modernized Priority 2-4 controls fully enforceable Oct 1, 2027 (timing varies by state CSA). Each cjis-delta part includes four structured sub-parts: baseline-requirement, cjis-addition, implementation-guidance, and evidence-required. Each cjis-delta part carries a gap-type prop with one of two values: implementation-delta (control present in both baselines; CJIS imposes stricter parameters, scope, or methodology) or control-level-gap (control present in CJIS v6.1 but absent from FedRAMP High; represents a net-new control for FedRAMP-authorized environments seeking CJIS compliance). A delta-category prop further groups controls by topical cluster (personnel, authentication, encryption, privacy-retention, pii-limitation, etc.).",
       "props": [
         {
           "name": "cjis-version",
-          "value": "6.0"
+          "value": "6.1"
         },
         {
           "name": "cjis-effective-date",
@@ -39,7 +39,7 @@
                 {
                   "id": "ps-3_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Personnel Screening",
+                  "title": "CJIS v6.1 Delta \u2014 Personnel Screening",
                   "props": [
                     {
                       "name": "delta-category",
@@ -86,7 +86,7 @@
                 {
                   "id": "ps-6_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Access Agreements",
+                  "title": "CJIS v6.1 Delta \u2014 Access Agreements",
                   "props": [
                     {
                       "name": "delta-category",
@@ -133,7 +133,7 @@
                 {
                   "id": "ia-2_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Identification and Authentication",
+                  "title": "CJIS v6.1 Delta \u2014 Identification and Authentication",
                   "props": [
                     {
                       "name": "delta-category",
@@ -180,7 +180,7 @@
                 {
                   "id": "ia-5_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Authenticator Management",
+                  "title": "CJIS v6.1 Delta \u2014 Authenticator Management",
                   "props": [
                     {
                       "name": "delta-category",
@@ -200,12 +200,12 @@
                     {
                       "id": "ia-5_cjis_addition",
                       "name": "cjis-addition",
-                      "prose": "Prescriptive password requirements for CJI systems: minimum 8 characters; must include characters from at least three of four categories (uppercase, lowercase, numeric, special); maximum password lifetime of 90 days; cannot reuse last 10 passwords. These are floor requirements — the CJIS policy sets specific values rather than deferring to organization-defined parameters."
+                      "prose": "Prescriptive password requirements for CJI systems: minimum 8 characters; must include characters from at least three of four categories (uppercase, lowercase, numeric, special); maximum password lifetime of 90 days; cannot reuse last 10 passwords. These are floor requirements \u2014 the CJIS policy sets specific values rather than deferring to organization-defined parameters."
                     },
                     {
                       "id": "ia-5_cjis_guidance",
                       "name": "implementation-guidance",
-                      "prose": "Configure identity provider and directory services to enforce CJIS password parameters. Document password policy settings and map them to CJIS requirements. If using SSO, ensure the upstream IdP enforces CJIS-compliant password policy. Note: CJIS password requirements may conflict with NIST 800-63B guidance (which discourages periodic rotation) — CJIS requirements take precedence for CJI systems."
+                      "prose": "Configure identity provider and directory services to enforce CJIS password parameters. Document password policy settings and map them to CJIS requirements. If using SSO, ensure the upstream IdP enforces CJIS-compliant password policy. Note: CJIS password requirements may conflict with NIST 800-63B guidance (which discourages periodic rotation) \u2014 CJIS requirements take precedence for CJI systems."
                     },
                     {
                       "id": "ia-5_cjis_evidence",
@@ -227,7 +227,7 @@
                 {
                   "id": "mp-6_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Media Sanitization",
+                  "title": "CJIS v6.1 Delta \u2014 Media Sanitization",
                   "props": [
                     {
                       "name": "delta-category",
@@ -274,7 +274,7 @@
                 {
                   "id": "sc-12_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Cryptographic Key Management",
+                  "title": "CJIS v6.1 Delta \u2014 Cryptographic Key Management",
                   "props": [
                     {
                       "name": "delta-category",
@@ -321,7 +321,7 @@
                 {
                   "id": "sc-13_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Cryptographic Protection",
+                  "title": "CJIS v6.1 Delta \u2014 Cryptographic Protection",
                   "props": [
                     {
                       "name": "delta-category",
@@ -341,7 +341,7 @@
                     {
                       "id": "sc-13_cjis_addition",
                       "name": "cjis-addition",
-                      "prose": "Minimum cryptographic strength requirements for CJI: 128-bit symmetric key length (AES-128 or higher) and 2048-bit asymmetric key length (RSA-2048 or equivalent ECC). All cryptographic modules must be FIPS 140-2 or FIPS 140-3 validated. These are floor requirements — the CJIS policy mandates specific minimum key lengths rather than deferring to organization-defined parameters."
+                      "prose": "Minimum cryptographic strength requirements for CJI: 128-bit symmetric key length (AES-128 or higher) and 2048-bit asymmetric key length (RSA-2048 or equivalent ECC). All cryptographic modules must be FIPS 140-2 or FIPS 140-3 validated. These are floor requirements \u2014 the CJIS policy mandates specific minimum key lengths rather than deferring to organization-defined parameters."
                     },
                     {
                       "id": "sc-13_cjis_guidance",
@@ -368,7 +368,7 @@
                 {
                   "id": "sc-28_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Protection of Information at Rest",
+                  "title": "CJIS v6.1 Delta \u2014 Protection of Information at Rest",
                   "props": [
                     {
                       "name": "delta-category",
@@ -388,7 +388,7 @@
                     {
                       "id": "sc-28_cjis_addition",
                       "name": "cjis-addition",
-                      "prose": "Agency-managed customer master key (CMK) required for all CJI at rest. The agency (not the CSP) must control the encryption key used to protect stored CJI. The agency must retain the ability to revoke the CSP's access to CJI at any time by revoking or rotating the CMK. CSP-managed default encryption keys are insufficient — agency key control is mandatory."
+                      "prose": "Agency-managed customer master key (CMK) required for all CJI at rest. The agency (not the CSP) must control the encryption key used to protect stored CJI. The agency must retain the ability to revoke the CSP's access to CJI at any time by revoking or rotating the CMK. CSP-managed default encryption keys are insufficient \u2014 agency key control is mandatory."
                     },
                     {
                       "id": "sc-28_cjis_guidance",
@@ -415,7 +415,7 @@
                 {
                   "id": "au-6_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Audit Record Review",
+                  "title": "CJIS v6.1 Delta \u2014 Audit Record Review",
                   "props": [
                     {
                       "name": "delta-category",
@@ -435,7 +435,7 @@
                     {
                       "id": "au-6_cjis_addition",
                       "name": "cjis-addition",
-                      "prose": "Weekly audit log review required for CJI-related events. Minimum 1-year retention period for audit logs related to CJI access and transactions. The review frequency and retention period are prescriptive — CJIS does not defer to organization-defined parameters for CJI audit logs."
+                      "prose": "Weekly audit log review required for CJI-related events. Minimum 1-year retention period for audit logs related to CJI access and transactions. The review frequency and retention period are prescriptive \u2014 CJIS does not defer to organization-defined parameters for CJI audit logs."
                     },
                     {
                       "id": "au-6_cjis_guidance",
@@ -462,7 +462,7 @@
                 {
                   "id": "ac-2_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Account Management",
+                  "title": "CJIS v6.1 Delta \u2014 Account Management",
                   "props": [
                     {
                       "name": "delta-category",
@@ -509,7 +509,7 @@
                 {
                   "id": "ir-6_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Incident Reporting",
+                  "title": "CJIS v6.1 Delta \u2014 Incident Reporting",
                   "props": [
                     {
                       "name": "delta-category",
@@ -529,17 +529,17 @@
                     {
                       "id": "ir-6_cjis_addition",
                       "name": "cjis-addition",
-                      "prose": "Security incidents involving CJI must be reported to the state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 IR-6, page 171) in addition to standard FedRAMP reporting channels. Reporting must occur within timeframes established by the state CSA. The state CSA selects one or more recipients from {CSO, SIB Chief, Interface Agency Official}; the CSP's obligation is satisfied by reaching the designated recipient(s) for each affected state. Onward escalation to the FBI CJIS Division is the state CSA's responsibility, not the CSP's."
+                      "prose": "Security incidents involving CJI must be reported to the state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6, page 171) in addition to standard FedRAMP reporting channels. Reporting must occur within timeframes established by the state CSA. The state CSA selects one or more recipients from {CSO, SIB Chief, Interface Agency Official}; the CSP's obligation is satisfied by reaching the designated recipient(s) for each affected state. Onward escalation to the FBI CJIS Division is the state CSA's responsibility, not the CSP's."
                     },
                     {
                       "id": "ir-6_cjis_guidance",
                       "name": "implementation-guidance",
-                      "prose": "Update incident response plan to include the CJIS-specific reporting chain per CJIS v6.0 IR-6 (page 171). For each state served, document which IR-6 recipient role(s) the state CSA has designated (CSO, SIB Chief, or Interface Agency Official) and maintain primary, backup, and after-hours contact information for each. Define what constitutes a CJI security incident (unauthorized access, loss, or disclosure of CJI). Establish reporting templates that satisfy both FedRAMP (US-CERT) and CJIS (state CSA-designated recipient) requirements. Conduct tabletop exercises including CJIS reporting procedures."
+                      "prose": "Update incident response plan to include the CJIS-specific reporting chain per CJIS v6.1 IR-6 (page 171). For each state served, document which IR-6 recipient role(s) the state CSA has designated (CSO, SIB Chief, or Interface Agency Official) and maintain primary, backup, and after-hours contact information for each. Define what constitutes a CJI security incident (unauthorized access, loss, or disclosure of CJI). Establish reporting templates that satisfy both FedRAMP (US-CERT) and CJIS (state CSA-designated recipient) requirements. Conduct tabletop exercises including CJIS reporting procedures."
                     },
                     {
                       "id": "ir-6_cjis_evidence",
                       "name": "evidence-required",
-                      "prose": "Incident response plan with CJIS reporting procedures identifying each state CSA's designated IR-6 recipient(s) (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 page 171); state CSA-designated recipient contact information documented and verified for each state served; incident reporting templates; evidence of tabletop exercises including CJIS reporting chain; sample incident reports demonstrating dual reporting (US-CERT and CJIS)."
+                      "prose": "Incident response plan with CJIS reporting procedures identifying each state CSA's designated IR-6 recipient(s) (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 page 171); state CSA-designated recipient contact information documented and verified for each state served; incident reporting templates; evidence of tabletop exercises including CJIS reporting chain; sample incident reports demonstrating dual reporting (US-CERT and CJIS)."
                     }
                   ]
                 }
@@ -556,7 +556,7 @@
                 {
                   "id": "pe-17_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Alternate Work Site",
+                  "title": "CJIS v6.1 Delta \u2014 Alternate Work Site",
                   "props": [
                     {
                       "name": "delta-category",
@@ -603,7 +603,7 @@
                 {
                   "id": "at-2_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 Delta — Awareness Training",
+                  "title": "CJIS v6.1 Delta \u2014 Awareness Training",
                   "props": [
                     {
                       "name": "delta-category",
@@ -628,7 +628,7 @@
                     {
                       "id": "at-2_cjis_guidance",
                       "name": "implementation-guidance",
-                      "prose": "Develop or obtain CJIS-specific security awareness training content. Track training completion dates per individual with CJI access. Ensure new personnel complete training within 6 months of CJI access grant. Schedule biennial refresher training. Integrate training tracking with CJI access management — personnel with expired training should be flagged for access review."
+                      "prose": "Develop or obtain CJIS-specific security awareness training content. Track training completion dates per individual with CJI access. Ensure new personnel complete training within 6 months of CJI access grant. Schedule biennial refresher training. Integrate training tracking with CJI access management \u2014 personnel with expired training should be flagged for access review."
                     },
                     {
                       "id": "at-2_cjis_evidence",
@@ -650,7 +650,7 @@
                 {
                   "id": "si_12_1_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Limit PII Elements",
+                  "title": "CJIS v6.1 \u2014 Limit PII Elements",
                   "props": [
                     {
                       "name": "delta-category",
@@ -697,7 +697,7 @@
                 {
                   "id": "si_12_2_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Minimize PII in Testing, Training, and Research",
+                  "title": "CJIS v6.1 \u2014 Minimize PII in Testing, Training, and Research",
                   "props": [
                     {
                       "name": "delta-category",
@@ -744,7 +744,7 @@
                 {
                   "id": "si_12_3_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Information Disposal",
+                  "title": "CJIS v6.1 \u2014 Information Disposal",
                   "props": [
                     {
                       "name": "delta-category",
@@ -791,7 +791,7 @@
                 {
                   "id": "au_3_3_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Limit PII Elements in Audit Records",
+                  "title": "CJIS v6.1 \u2014 Limit PII Elements in Audit Records",
                   "props": [
                     {
                       "name": "delta-category",
@@ -838,7 +838,7 @@
                 {
                   "id": "pe_8_3_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Limit PII Elements in Visitor Access Records",
+                  "title": "CJIS v6.1 \u2014 Limit PII Elements in Visitor Access Records",
                   "props": [
                     {
                       "name": "delta-category",
@@ -885,7 +885,7 @@
                 {
                   "id": "ac_3_14_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Individual Access to PII",
+                  "title": "CJIS v6.1 \u2014 Individual Access to PII",
                   "props": [
                     {
                       "name": "delta-category",
@@ -932,7 +932,7 @@
                 {
                   "id": "sc_7_24_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — PII Processing Rules at Boundaries",
+                  "title": "CJIS v6.1 \u2014 PII Processing Rules at Boundaries",
                   "props": [
                     {
                       "name": "delta-category",
@@ -979,7 +979,7 @@
                 {
                   "id": "at_3_5_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Role-Based Training on Processing PII",
+                  "title": "CJIS v6.1 \u2014 Role-Based Training on Processing PII",
                   "props": [
                     {
                       "name": "delta-category",
@@ -1026,7 +1026,7 @@
                 {
                   "id": "ir_2_3_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Breach Response Training",
+                  "title": "CJIS v6.1 \u2014 Breach Response Training",
                   "props": [
                     {
                       "name": "delta-category",
@@ -1051,7 +1051,7 @@
                     {
                       "id": "ir_2_3_cjis_guidance",
                       "name": "implementation-guidance",
-                      "prose": "Incorporate breach module into existing IR-2 training: breach definition, recognition, reporting channels (CSO, SIB Chief, or Interface Agency Official per CJIS v6.0 IR-6 page 171), time-sensitive obligations. Run breach-specific tabletop exercises including insider-misuse scenarios. Cover the authorized-user-unauthorized-purpose case explicitly. Connect training to IR-8.1 notice-determination process. Align cadence with existing IR training (annual typical)."
+                      "prose": "Incorporate breach module into existing IR-2 training: breach definition, recognition, reporting channels (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6 page 171), time-sensitive obligations. Run breach-specific tabletop exercises including insider-misuse scenarios. Cover the authorized-user-unauthorized-purpose case explicitly. Connect training to IR-8.1 notice-determination process. Align cadence with existing IR training (annual typical)."
                     },
                     {
                       "id": "ir_2_3_cjis_evidence",
@@ -1073,7 +1073,7 @@
                 {
                   "id": "ir_8_1_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — IR Plan for Breaches",
+                  "title": "CJIS v6.1 \u2014 IR Plan for Breaches",
                   "props": [
                     {
                       "name": "delta-category",
@@ -1093,7 +1093,7 @@
                     {
                       "id": "ir_8_1_cjis_addition",
                       "name": "cjis-addition",
-                      "prose": "The IR Plan must include three breach-specific elements: (1) notice determination process for notifying individuals or other organizations; (2) harm assessment process evaluating harm to affected individuals and mitigation mechanisms; (3) identification of applicable privacy requirements (for CJI: CJIS v6.0 IR-6 and IR-8(1) per published policy pages 167-174, state breach notification statutes, Privacy Act exemptions)."
+                      "prose": "The IR Plan must include three breach-specific elements: (1) notice determination process for notifying individuals or other organizations; (2) harm assessment process evaluating harm to affected individuals and mitigation mechanisms; (3) identification of applicable privacy requirements (for CJI: CJIS v6.1 IR-6 and IR-8(1) per published policy pages 167-174, state breach notification statutes, Privacy Act exemptions)."
                     },
                     {
                       "id": "ir_8_1_cjis_guidance",
@@ -1120,7 +1120,7 @@
                 {
                   "id": "pl_9_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Central Management",
+                  "title": "CJIS v6.1 \u2014 Central Management",
                   "props": [
                     {
                       "name": "delta-category",
@@ -1167,7 +1167,7 @@
                 {
                   "id": "sa_8_33_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.0 — Minimization as Engineering Principle",
+                  "title": "CJIS v6.1 \u2014 Minimization as Engineering Principle",
                   "props": [
                     {
                       "name": "delta-category",
