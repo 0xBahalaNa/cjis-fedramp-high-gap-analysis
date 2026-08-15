@@ -1411,7 +1411,7 @@ This is the architectural counterpart to the runtime minimization controls (SI-1
 
 ### Source of truth
 
-The authoritative source for the CJIS v6.1 control set in this analysis is the published CJIS Security Policy v6.1 document (FBI CJIS Division, 2024-12-27). The control set is the list of controls referenced in the document's Section 5 (Policy and Implementation) Table of Contents.
+The authoritative source for the CJIS v6.1 control set in this analysis is the published CJIS Security Policy v6.1 document (FBI CJIS Division, released June 25, 2026). The control set is the list of controls referenced in the document's Section 5 (Policy and Implementation) Table of Contents.
 
 Baseline-comparison tooling, including the usfed-compliance MCP `compare_baselines` output for `cjis-v6` vs `fedramp-high`, was used as a starting point to identify candidate implementation-level deltas and control-level gaps. Tooling output is not authoritative. When tooling output disagrees with the published document, the published document governs.
 
