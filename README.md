@@ -84,7 +84,7 @@ Controls where CJIS v6.1 imposes stricter requirements than the FedRAMP High bas
 
 ### Control-Level Gaps
 
-Controls present in the CJIS v6.x published control set that are not in FedRAMP High. Baseline comparison tooling flagged 15 CJIS-only candidates; verification against the published v6.0 document confirmed 12. The three excluded candidates (SI-18, SI-18.4, SI-19 from the NIST 800-53 Rev 5 privacy overlay) are not in the v6.x control set — v6.1 removed them from the List of Priorities entirely, confirming the exclusion. See `analysis/gap-analysis.md` Methodology section for details.
+Controls present in the CJIS v6.x published control set that are not in FedRAMP High. Baseline comparison tooling flagged 15 CJIS-only candidates; verification against the published v6.0 document confirmed 12. The three excluded candidates (SI-18, SI-18.4, SI-19 from the NIST 800-53 Rev 5 privacy overlay) are not in the v6.x control set: v6.1 removed them from the List of Priorities entirely, confirming the exclusion. See `analysis/gap-analysis.md` Methodology section for details.
 
 | NIST 800-53 Rev 5 | Family | CJIS v6.1 Requirement | Cluster |
 |--------------------|--------|------------------------|---------|
