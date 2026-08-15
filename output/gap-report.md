@@ -113,15 +113,15 @@ Password complexity, rotation, and authenticator management per FedRAMP High bas
 
 **CJIS v6.1 Delta**
 
-Prescriptive password requirements for CJI systems: minimum 8 characters; must include characters from at least three of four categories (uppercase, lowercase, numeric, special); maximum password lifetime of 90 days; cannot reuse last 10 passwords. These are floor requirements — the CJIS policy sets specific values rather than deferring to organization-defined parameters.
+No CJIS-specific numeric delta confirmed against the published v6.1 text (post-merge verification, 2026-08-15). IA-5(f) requires changing memorized secret authenticators annually or when there is evidence of compromise — the same 800-63B-aligned, event-driven model FedRAMP High already uses. Earlier drafts asserted prescriptive 8-char/3-of-4-complexity/90-day/10-history values; none of those appear in the v6.1 control text and they are not carried forward here.
 
 **Implementation Guidance**
 
-Configure identity provider and directory services to enforce CJIS password parameters. Document password policy settings and map them to CJIS requirements. If using SSO, ensure the upstream IdP enforces CJIS-compliant password policy. Note: CJIS password requirements may conflict with NIST 800-63B guidance (which discourages periodic rotation) — CJIS requirements take precedence for CJI systems.
+Configure identity provider and directory services to org-defined, 800-63B-aligned password parameters (long passphrases, breach-corpus screening, annual or compromise-triggered changes). There is no separate CJIS numeric floor to layer on top for password composition or rotation.
 
 **Evidence Required**
 
-Password policy configuration exports from IdP/directory; screenshots of complexity enforcement settings; password history and rotation settings; documentation mapping CJIS password requirements to implemented configuration.
+Password policy configuration exports from IdP/directory; change-triggering event documentation (annual refresh or compromise-triggered); documentation mapping the organization's chosen parameters to implemented configuration.
 
 #### Media Protection
 
@@ -229,15 +229,15 @@ Account lifecycle management including creation, modification, disabling, and re
 
 **CJIS v6.1 Delta**
 
-Quarterly access reviews required for all users authorized to access CJI. Reviews must verify continued need-to-know and appropriate privilege levels. Accounts for personnel who no longer require CJI access must be disabled immediately upon determination, not at the next review cycle.
+No CJIS-specific review-cadence delta confirmed against the published v6.1 text (post-merge verification, 2026-08-15). AC-2(j) requires review 'at least annually,' the same cadence FedRAMP High's ac-02_odp.10 typically uses. Earlier drafts asserted a quarterly (90-day) mandate; that figure does not appear in the policy text. The genuinely CJIS-specific surface is need-to-know granularity (each authorization must reference a specific CJI data set and business function) and the one-day notification timeline for terminations/transfers/need-to-know changes (AC-2.h), which CJIS sensitivity makes higher-stakes even though the timeline itself is unchanged from baseline.
 
 **Implementation Guidance**
 
-Implement quarterly user access review process for CJI-authorized accounts. Generate access review reports from the identity provider listing all accounts with CJI access, their roles, and last access date. Require manager/data owner certification of continued need. Integrate with HR/personnel processes to trigger immediate access revocation upon role change or separation.
+Implement a periodic access review process for CJI-authorized accounts on the agency's documented cadence (annual floor per AC-2(j); quarterly is a common stricter agency choice, not a CJIS mandate). Generate access review reports from the identity provider listing all accounts with CJI access, their roles, and last access date. Require manager/data owner certification of continued need. Integrate with HR/personnel processes to trigger access revocation within one day of role change or separation (AC-2.h).
 
 **Evidence Required**
 
-Quarterly access review reports with reviewer certification; CJI-authorized user roster with roles and justification; evidence of access revocation for personnel no longer requiring CJI access; access review policy documenting quarterly cadence; IAM configuration showing review-triggered account actions.
+Access review reports with reviewer certification, completed on the agency's documented cadence; CJI-authorized user roster with roles and justification; evidence of access revocation for personnel no longer requiring CJI access; access review policy documenting the chosen cadence; IAM configuration showing review-triggered account actions.
 
 #### Incident Response
 
@@ -289,15 +289,15 @@ Security awareness training for all information system users annually per FedRAM
 
 **CJIS v6.1 Delta**
 
-CJIS Security Awareness Training required within 6 months of initial CJI access authorization. Biennial (every 2 years) refresher training required thereafter. Training content must cover CJIS-specific topics: CJI handling and dissemination rules, Security Addendum obligations, incident reporting requirements for CJI, and sanctions for policy violations.
+No CJIS-specific cadence delta confirmed against the published v6.1 text (post-merge verification, 2026-08-15). AT-2(a)(1) requires initial training prior to CJI access and annually thereafter — the same cadence as the FedRAMP High baseline; no separate 6-month/biennial CJIS training track exists in the modernized policy. The genuinely CJIS-specific surface is content: training must cover CJI handling and dissemination rules, Security Addendum obligations, CJIS-specific incident reporting, and sanctions for policy violations.
 
 **Implementation Guidance**
 
-Develop or obtain CJIS-specific security awareness training content. Track training completion dates per individual with CJI access. Ensure new personnel complete training within 6 months of CJI access grant. Schedule biennial refresher training. Integrate training tracking with CJI access management — personnel with expired training should be flagged for access review.
+Develop or obtain CJIS-specific security awareness training content and fold it into the existing annual FedRAMP training cycle rather than standing up a separate track. Track training completion dates per individual with CJI access. Ensure initial training precedes CJI access grant, per AT-2(a)(1). Integrate training tracking with CJI access management — personnel with expired or missing training should be flagged for access review.
 
 **Evidence Required**
 
-CJIS Security Awareness Training curriculum/content; training completion records per individual with dates; evidence of training within 6 months of initial CJI access; biennial refresher completion records; training tracking system configuration showing CJIS training requirements.
+CJIS-relevant training curriculum/content; training completion records per individual with dates; evidence of initial training prior to CJI access and annual refresh thereafter; training tracking system configuration.
 
 ### Control-Level Gaps
 

@@ -71,16 +71,16 @@ Controls where CJIS v6.1 imposes stricter requirements than the FedRAMP High bas
 | PS-3 Personnel Screening | Background investigation | Fingerprint-based background check (state/national) required for all CJI access | Personnel |
 | PS-6 Access Agreements | Signed rules of behavior | CJIS Security Addendum required before CJI access | Personnel |
 | IA-2 Identification & Authentication | MFA required | AAL2 phishing-resistant MFA; Advanced Authentication for CJI access | Authentication |
-| IA-5 Authenticator Management | Complexity/rotation per baseline | Minimum 8-char passwords, specific complexity rules, 90-day max lifetime | Authentication |
+| IA-5 Authenticator Management | Complexity/rotation per baseline | No CJIS-specific numeric delta (annual/event-driven refresh per IA-5(f), matches baseline) | Authentication |
 | MP-6 Media Sanitization | Sanitize before disposal/reuse | Prescriptive sanitization procedures per media type; physical destruction requirements for CJI media | Media Protection |
 | SC-12 Cryptographic Key Management | FIPS-validated modules | Agency-managed encryption keys; FIPS 140-2/140-3 validated modules | Encryption |
 | SC-13 Cryptographic Protection | FIPS-validated crypto | Minimum 128-bit symmetric / 2048-bit asymmetric key lengths for CJI | Encryption |
 | SC-28 Protection of Info at Rest | Encryption at rest required | Agency-managed CMK required for CJI at rest; agency retains key revocation authority | Encryption |
 | AU-6 Audit Record Review | Review/analysis per baseline | Weekly audit log review; 1-year minimum retention for CJI-related events | Audit |
-| AC-2 Account Management | Account lifecycle per baseline | Quarterly access reviews for CJI-authorized users | Access Control |
+| AC-2 Account Management | Account lifecycle per baseline (annual, AC-2.j) | No CJIS-specific cadence delta; real delta is need-to-know granularity + prerequisite-chain tie-in | Access Control |
 | IR-6 Incident Reporting | Report to US-CERT | Additional reporting to state CSA-designated recipient (CSO, SIB Chief, or Interface Agency Official per CJIS v6.1 IR-6, page 171) within state-defined timeframes | Incident Response |
 | PE-17 Alternate Work Site | Authorize alternate sites | Specific controls for remote CJI access locations | Physical/Environmental |
-| AT-2 Awareness Training | Annual security training | CJIS Security Awareness Training within 6 months of CJI access, biennial refresher | Training |
+| AT-2 Awareness Training | Annual security training | No CJIS-specific cadence delta (AT-2(a)(1) also annual); real delta is CJI-specific content | Training |
 
 ### Control-Level Gaps
 
