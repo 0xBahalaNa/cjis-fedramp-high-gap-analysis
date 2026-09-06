@@ -7,17 +7,12 @@
 
 # CJIS v6.1 to FedRAMP High Gap Analysis
 
-I built this to answer a narrow question: if a CSP already holds FedRAMP High, which
-CJIS Security Policy v6.1 requirements still sit outside that baseline? CJIS v6.x
-uses NIST 800-53 Rev 5 and has been the default audit baseline since April 1, 2026;
-v6.1 (released June 25, 2026) is the current revision. The repo holds a FedRAMP High OSCAL profile, a CJIS overlay that records each
-delta, a hand-authored narrative in `analysis/gap-analysis.md`, and a generator that
-rebuilds `output/gap-report.md`.
+**CJIS v6.x has been the default audit baseline since April 1, 2026. A public-safety vendor that can't demonstrate the delta from its FedRAMP High baseline loses state and local deals it already qualifies for technically. This repo fixes that delta in a regenerable list.**
 
-The tables below list 13 implementation-level deltas and 12 control-level gaps. That
-is the scoped set I verified against the published v6.0 text and re-checked against
-the v6.1 List of Priorities; it is not a claim that
-every possible CJIS nuance is catalogued.
+- Control-by-control delta, FedRAMP High → CJIS v6.1 (released June 25, 2026), with the enforcement timeline through October 2027
+- 13 implementation-level deltas and 12 control-level gaps, verified against the published v6.0 text and re-checked against the v6.1 List of Priorities; not a claim that every CJIS nuance is catalogued
+- FedRAMP High OSCAL profile plus a CJIS overlay recording each delta; `analysis/gap-analysis.md` holds the narrative and `scripts/generate_gap_report.py` rebuilds `output/gap-report.md`
+- NIST 800-53 Rev 5 / FedRAMP High / CJIS v6.1
 
 ## Architecture Overview
 
