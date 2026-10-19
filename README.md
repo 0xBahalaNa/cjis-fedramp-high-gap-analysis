@@ -154,6 +154,8 @@ here in a way it was not under v5.9.x.
 └── LICENSE.txt
 ```
 
+CI runs `python -m py_compile` on every tracked Python file. It is a syntax floor until this repo has tests.
+
 ## License
 
 MIT
