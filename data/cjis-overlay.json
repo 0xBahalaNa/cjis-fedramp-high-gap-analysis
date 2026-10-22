@@ -153,7 +153,7 @@
                     {
                       "id": "ia-2_cjis_addition",
                       "name": "cjis-addition",
-                      "prose": "Advanced Authentication required for CJI access: AAL2 (per NIST SP 800-63-3) phishing-resistant multi-factor authentication. Must use two of: something you know, something you have, something you are. Advanced Authentication is mandatory when accessing CJI from outside a physically secure location or over any network."
+                      "prose": "Advanced Authentication required for CJI access: AAL2 (per NIST SP 800-63-3) is replay-resistant, and an authenticator app meets it. Phishing-resistant authenticators are recommended, not required. On MFA authenticator type, FedRAMP Rev 5 IA-2(1) and IA-2(2) guidance is the stricter one: multi-factor authentication must be phishing-resistant. Must use two of: something you know, something you have, something you are. Advanced Authentication is mandatory when accessing CJI from outside a physically secure location or over any network."
                     },
                     {
                       "id": "ia-2_cjis_guidance",
