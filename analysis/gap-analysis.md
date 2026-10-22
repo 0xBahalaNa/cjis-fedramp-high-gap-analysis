@@ -178,7 +178,7 @@ FedRAMP High requires multi-factor authentication for all users through enhancem
 - **Multi-factor authentication.** Two or more factors from: something you know, something you have, something you are
 - **Network and local access.** MFA applies to both network (remote) and local access for privileged accounts
 
-FedRAMP High does not prescribe a specific Authentication Assurance Level (AAL) from NIST SP 800-63-3, nor does it mandate phishing resistance. An organization using SMS-based OTP as a second factor satisfies the FedRAMP High baseline, even though SMS OTP is vulnerable to SIM-swapping and interception attacks.
+FedRAMP High does not prescribe a specific Authentication Assurance Level (AAL) from NIST SP 800-63-3. On authenticator type, FedRAMP Rev 5 IA-2(1) and IA-2(2) guidance is stricter than CJIS AAL2. That guidance says multi-factor authentication must be phishing-resistant, so SMS OTP does not satisfy the FedRAMP High baseline.
 
 #### CJIS v6.1 Delta
 
@@ -189,7 +189,7 @@ CJIS defines "Advanced Authentication" with specific requirements that narrow th
 - **Mandatory trigger conditions.** Advanced Authentication is required when accessing CJI from outside a physically secure location (defined by the agency) or when accessing CJI over any network. This means remote access to CJI always requires Advanced Authentication.
 - **Two distinct factors required.** Must use two of the three categories: something you know (password/PIN), something you have (token/smart card/phone), something you are (biometric). Two factors from the same category do not satisfy the requirement.
 
-**Why this matters:** A CSP using basic MFA (e.g., password + SMS OTP) satisfies FedRAMP High but may not satisfy CJIS Advanced Authentication. The distinction is the assurance level. CJIS requires AAL2, which demands that the authenticator prove possession through a cryptographic protocol. SMS OTP does not meet AAL2 because the phone number is not a cryptographic authenticator. Organizations must evaluate their current MFA stack against NIST SP 800-63-3 AAL2 requirements, not just confirm that "MFA is enabled."
+**Why this matters:** A CSP using basic MFA (e.g., password + SMS OTP) satisfies neither the FedRAMP Rev 5 phishing-resistant MFA guidance nor CJIS AAL2. CJIS requires AAL2, which demands that the authenticator prove possession through a cryptographic protocol. SMS OTP does not meet AAL2 because the phone number is not a cryptographic authenticator. Organizations must evaluate their current MFA stack against NIST SP 800-63-3 AAL2 requirements and the FedRAMP Rev 5 phishing-resistant rule, not just confirm that "MFA is enabled."
 
 #### NIST SP 800-63-3 AAL Levels (Reference)
 
