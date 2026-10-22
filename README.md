@@ -65,7 +65,7 @@ Controls where CJIS v6.1 imposes stricter requirements than the FedRAMP High bas
 |--------------------|:------------:|------------------|----------|
 | PS-3 Personnel Screening | Background investigation | Fingerprint-based background check (state/national) required for all CJI access | Personnel |
 | PS-6 Access Agreements | Signed rules of behavior | CJIS Security Addendum required before CJI access | Personnel |
-| IA-2 Identification & Authentication | MFA required | AAL2 phishing-resistant MFA; Advanced Authentication for CJI access | Authentication |
+| IA-2 Identification & Authentication | MFA required | AAL2 (replay-resistant; an authenticator app meets it); phishing-resistant authenticators recommended, not required; FedRAMP Rev 5 IA-2(1) and IA-2(2) stricter on authenticator type | Authentication |
 | IA-5 Authenticator Management | Complexity/rotation per baseline | No CJIS-specific numeric delta (annual/event-driven refresh per IA-5(f), matches baseline) | Authentication |
 | MP-6 Media Sanitization | Sanitize before disposal/reuse | Prescriptive sanitization procedures per media type; physical destruction requirements for CJI media | Media Protection |
 | SC-12 Cryptographic Key Management | FIPS-validated modules | Agency-managed encryption keys; FIPS 140-2/140-3 validated modules | Encryption |
