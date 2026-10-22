@@ -189,7 +189,7 @@ CJIS defines "Advanced Authentication" with specific requirements that narrow th
 - **Mandatory trigger conditions.** Advanced Authentication is required when accessing CJI from outside a physically secure location (defined by the agency) or when accessing CJI over any network. This means remote access to CJI always requires Advanced Authentication.
 - **Two distinct factors required.** Must use two of the three categories: something you know (password/PIN), something you have (token/smart card/phone), something you are (biometric). Two factors from the same category do not satisfy the requirement.
 
-**Why this matters:** A CSP using basic MFA (e.g., password + SMS OTP) satisfies neither the FedRAMP Rev 5 phishing-resistant MFA guidance nor CJIS AAL2. CJIS requires AAL2, which demands that the authenticator prove possession through a cryptographic protocol. SMS OTP does not meet AAL2 because the phone number is not a cryptographic authenticator. Organizations must evaluate their current MFA stack against NIST SP 800-63-3 AAL2 requirements and the FedRAMP Rev 5 phishing-resistant rule, not just confirm that "MFA is enabled."
+**Why this matters:** A CSP using basic MFA (e.g., password + SMS OTP) does not satisfy the FedRAMP Rev 5 phishing-resistant MFA guidance. CJIS requires AAL2. NIST SP 800-63B Sections 4.2.1, 5.1.3.3, and 5.2.10 (SP 800-63-3, the edition Appendix G.9 cites) permit an out-of-band device at AAL2 and restrict SMS sent over the PSTN, so SMS may still be used at AAL2 when the restricted-authenticator requirements are met. CJIS v6.1 does not ban SMS on its own terms. IA-5 (1)(c)(21) through (24) apply those requirements to phone and SMS OTPs, and Appendix G.9 lists an out-of-band device as a permitted AAL2 authenticator. Organizations must evaluate their current MFA stack against NIST SP 800-63-3 AAL2 requirements and the FedRAMP Rev 5 phishing-resistant rule, not just confirm that "MFA is enabled."
 
 #### NIST SP 800-63-3 AAL Levels (Reference)
 
@@ -201,7 +201,7 @@ Understanding the AAL hierarchy is essential for evaluating whether current MFA 
 
 #### Implementation Guidance
 
-1. **Inventory current MFA implementations.** Map each CJI access path to the authenticator types in use. Classify each against NIST SP 800-63-3 AAL levels. Any path using SMS OTP, email codes, or voice callbacks as the second factor likely falls below AAL2.
+1. **Inventory current MFA implementations.** Map each CJI access path to the authenticator types in use. Classify each against NIST SP 800-63-3 AAL levels. SMS OTP as the second factor is a restricted authenticator at AAL2 (see above). Email codes, or voice callbacks that do not prove possession of a specific device, likely fall below AAL2.
 2. **Deploy AAL2-compliant authenticators.** TOTP apps (Authy, Google Authenticator, Microsoft Authenticator) meet AAL2 minimum. For stronger posture, deploy FIDO2/WebAuthn hardware keys or PIV/CAC cards, which meet AAL3 and provide phishing resistance.
 3. **Enforce MFA at the application layer.** MFA must be enforced at the point of CJI access, not just at the network perimeter. If a user authenticates with MFA to a VPN but then accesses the CJI application with only a password, the Advanced Authentication requirement is not satisfied for the CJI access.
 4. **Document authenticator classifications.** Maintain a record mapping each authenticator type to its AAL level, with references to NIST SP 800-63-3. This documentation is critical during audits.
@@ -220,10 +220,10 @@ An auditor will expect to see:
 
 #### Key Considerations
 
-- **SMS OTP is the most common gap.** Many organizations implemented SMS-based MFA to satisfy FedRAMP. For CJIS, SMS does not meet AAL2. This is often the single highest-effort remediation item in the IA-2 delta.
+- **SMS OTP is a restricted authenticator, not a ban.** Many organizations implemented SMS-based MFA to satisfy FedRAMP. CJIS v6.1 still allows it at AAL2 when the restricted-authenticator requirements are met.
 - **SSO complicates the picture.** If users authenticate via SSO, the AAL level is determined by the IdP's authentication flow, not the downstream application. Verify the IdP enforces AAL2 for sessions that will access CJI.
 - **Conditional access policies.** Consider using conditional access to require stronger authenticators (AAL3/phishing-resistant) for CJI access while allowing AAL2 for non-CJI systems. This reduces friction while exceeding CJIS minimums for the most sensitive access.
-- **Grace period for migration.** If migrating from SMS OTP to AAL2-compliant authenticators, coordinate with the CSA on timeline expectations. An in-progress migration with a documented plan and deadline is better than no plan.
+- **Grace period for migration.** If migrating off restricted authenticators, coordinate with the CSA on timeline expectations. An in-progress migration with a documented plan and deadline is better than no plan.
 
 ---
 
