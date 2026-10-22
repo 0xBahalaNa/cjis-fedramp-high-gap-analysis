@@ -220,10 +220,10 @@ An auditor will expect to see:
 
 #### Key Considerations
 
-- **SMS OTP is the most common gap.** Many organizations implemented SMS-based MFA to satisfy FedRAMP. For CJIS, SMS is a restricted authenticator at AAL2. See above. This is often the single highest-effort remediation item in the IA-2 delta.
+- **SMS OTP is a restricted authenticator, not a ban.** Many organizations implemented SMS-based MFA to satisfy FedRAMP. CJIS v6.1 still allows it at AAL2 when the restricted-authenticator requirements are met.
 - **SSO complicates the picture.** If users authenticate via SSO, the AAL level is determined by the IdP's authentication flow, not the downstream application. Verify the IdP enforces AAL2 for sessions that will access CJI.
 - **Conditional access policies.** Consider using conditional access to require stronger authenticators (AAL3/phishing-resistant) for CJI access while allowing AAL2 for non-CJI systems. This reduces friction while exceeding CJIS minimums for the most sensitive access.
-- **Grace period for migration.** If migrating from SMS OTP to AAL2-compliant authenticators, coordinate with the CSA on timeline expectations. An in-progress migration with a documented plan and deadline is better than no plan.
+- **Grace period for migration.** If migrating off restricted authenticators, coordinate with the CSA on timeline expectations. An in-progress migration with a documented plan and deadline is better than no plan.
 
 ---
 
