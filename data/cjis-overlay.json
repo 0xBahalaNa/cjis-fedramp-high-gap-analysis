@@ -148,17 +148,17 @@
                     {
                       "id": "ia-2_cjis_baseline",
                       "name": "baseline-requirement",
-                      "prose": "Multi-factor authentication required for access to the information system per FedRAMP High baseline."
+                      "prose": "Multi-factor authentication for privileged and non-privileged accounts. FedRAMP Rev 5 guidance for IA-2, IA-2(1), and IA-2(2) says multi-factor authentication must be phishing-resistant."
                     },
                     {
                       "id": "ia-2_cjis_addition",
                       "name": "cjis-addition",
-                      "prose": "Advanced Authentication required for CJI access: AAL2 (per NIST SP 800-63-3) is replay-resistant, and an authenticator app meets it. Phishing-resistant authenticators are recommended, not required. On MFA authenticator type, FedRAMP Rev 5 IA-2(1) and IA-2(2) guidance is the stricter one: multi-factor authentication must be phishing-resistant. Must use two of: something you know, something you have, something you are. Advanced Authentication is mandatory when accessing CJI from outside a physically secure location or over any network."
+                      "prose": "No CJIS-stricter MFA delta. CJIS v6.1 IA-5(j)(1) sets the floor at AAL2. That is a multi-factor authenticator, or a memorized secret plus a possession-based authenticator (look-up secret, out-of-band authenticator, or OTP device). IA-5(j)(4) and IA-2(8) require at least one replay-resistant authenticator. OTP and out-of-band push meet that floor. The v6.1 policy does not require or prefer phishing-resistant authenticators. Appendix G.9, page G.9-2, assigns phishing resistance to AAL3 and states that the CJIS risk profile is AAL2. IA-2(1) and IA-2(2) are in both baselines. Access from outside a physically secure location, or over any network, is not a separate scope rule in the v6.1 IA-2 control text."
                     },
                     {
                       "id": "ia-2_cjis_guidance",
                       "name": "implementation-guidance",
-                      "prose": "Deploy AAL2-compliant MFA for all CJI access paths. Phishing-resistant authenticators (FIDO2/WebAuthn, PIV/CAC, or hardware tokens) are preferred. Software OTP tokens meet AAL2 minimum but do not satisfy phishing-resistance. Ensure MFA is enforced at the application layer, not just the network perimeter. Document which authenticator types are used and their AAL level."
+                      "prose": "Meet the FedRAMP Rev 5 phishing-resistant rule for CJI access. A software OTP token meets the CJIS AAL2 floor and does not meet that rule. Enforce MFA at the application layer, not only at the network perimeter. Record the authenticator type and its AAL."
                     },
                     {
                       "id": "ia-2_cjis_evidence",
