@@ -15,7 +15,7 @@ Generated from `data/cjis-overlay.json`. CJIS Security Policy v6.1 has been the 
 | PS-3 | Personnel | CJIS v6.1 Delta — Personnel Screening |
 | PS-6 | Personnel | CJIS v6.1 Delta — Access Agreements |
 | IA-2 | Authentication | Non-delta (corrected) — Identification and Authentication |
-| IA-5 | Authentication | CJIS v6.1 Delta — Authenticator Management |
+| IA-5 | Authentication | Non-delta (corrected) — Authenticator Management |
 | MP-6 | Media Protection | CJIS v6.1 Delta — Media Sanitization |
 | SC-12 | Encryption | CJIS v6.1 Delta — Cryptographic Key Management |
 | SC-13 | Encryption | CJIS v6.1 Delta — Cryptographic Protection |
@@ -105,7 +105,7 @@ Meet the FedRAMP Rev 5 phishing-resistant rule for CJI access. A software OTP to
 
 MFA configuration screenshots/exports; authenticator type inventory and AAL classification; authentication policy documentation specifying CJIS Advanced Authentication requirements; logs demonstrating MFA enforcement for CJI access; network diagrams showing MFA enforcement points.
 
-##### IA-5 - CJIS v6.1 Delta — Authenticator Management
+##### IA-5 - Non-delta (corrected) — Authenticator Management
 
 **FedRAMP High Baseline Requirement**
 

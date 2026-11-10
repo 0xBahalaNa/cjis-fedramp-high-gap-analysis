@@ -180,7 +180,7 @@
                 {
                   "id": "ia-5_cjis_delta",
                   "name": "cjis-delta",
-                  "title": "CJIS v6.1 Delta \u2014 Authenticator Management",
+                  "title": "Non-delta (corrected) \u2014 Authenticator Management",
                   "props": [
                     {
                       "name": "delta-category",
