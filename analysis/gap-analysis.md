@@ -9,7 +9,7 @@ The gap analysis distinguishes two categories of gaps between CJIS v6.1 and FedR
 1. **Implementation-level deltas** are controls present in both baselines where CJIS imposes stricter parameters, scope, or methodology. The baseline control exists in FedRAMP High; CJIS tightens it (for example, CJIS requires fingerprint-based background checks for PS-3 while FedRAMP leaves screening method to organizational discretion).
 2. **Control-level gaps** are controls present in the CJIS v6.1 baseline but absent from FedRAMP High entirely. An agency running FedRAMP High must implement these from scratch to satisfy CJIS. These are concentrated in the NIST 800-53 Rev 5 privacy overlay, reflecting CJI's status as sensitive personal data.
 
-Baseline comparison identifies 13 implementation-level deltas and 12 control-level gaps. The analysis below addresses both, grouped by category. See the "Methodology" section at the end of this document for how gap controls were verified against the published CJIS v6.1 source text.
+Baseline comparison identifies 13 implementation-level deltas and 12 control-level gaps. IA-2 is listed in that count as a corrected non-delta, the same way IA-5 is. The analysis below addresses both, grouped by category. See the "Methodology" section at the end of this document for how gap controls were verified against the published CJIS v6.1 source text.
 
 ### Implementation-Level Deltas (13 controls)
 
@@ -28,6 +28,8 @@ Baseline comparison identifies 13 implementation-level deltas and 12 control-lev
 | IR-6 | Incident Response | Complete |
 | PE-17 | Physical and Environmental Protection | Complete |
 | AT-2 | Awareness and Training | Complete |
+
+IA-2 is listed in this table, and in the count of 13, as a corrected non-delta, the same way IA-5 is.
 
 ### Control-Level Gaps (12 controls)
 

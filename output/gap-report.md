@@ -14,7 +14,7 @@ Generated from `data/cjis-overlay.json`. CJIS Security Policy v6.1 has been the 
 |---------|----------|-------|
 | PS-3 | Personnel | CJIS v6.1 Delta — Personnel Screening |
 | PS-6 | Personnel | CJIS v6.1 Delta — Access Agreements |
-| IA-2 | Authentication | CJIS v6.1 Delta — Identification and Authentication |
+| IA-2 | Authentication | Non-delta (corrected) — Identification and Authentication |
 | IA-5 | Authentication | CJIS v6.1 Delta — Authenticator Management |
 | MP-6 | Media Protection | CJIS v6.1 Delta — Media Sanitization |
 | SC-12 | Encryption | CJIS v6.1 Delta — Cryptographic Key Management |
@@ -87,7 +87,7 @@ Signed CJIS Security Addendum for each individual with CJI access; addendum trac
 
 #### Authentication
 
-##### IA-2 - CJIS v6.1 Delta — Identification and Authentication
+##### IA-2 - Non-delta (corrected) — Identification and Authentication
 
 **FedRAMP High Baseline Requirement**
 
@@ -95,7 +95,7 @@ Multi-factor authentication for privileged and non-privileged accounts. FedRAMP 
 
 **CJIS v6.1 Delta**
 
-No CJIS-stricter MFA delta. CJIS v6.1 IA-5(j)(1) sets the floor at AAL2. That is a multi-factor authenticator, or a memorized secret plus a possession-based authenticator (look-up secret, out-of-band authenticator, or OTP device). IA-5(j)(4) and IA-2(8) require at least one replay-resistant authenticator. OTP and out-of-band push meet that floor. The v6.1 policy does not require or prefer phishing-resistant authenticators. Appendix G.9, page G.9-2, assigns phishing resistance to AAL3 and states that the CJIS risk profile is AAL2. IA-2(1) and IA-2(2) are in both baselines. Access from outside a physically secure location, or over any network, is not a separate scope rule in the v6.1 IA-2 control text.
+Non-delta (corrected). No CJIS-stricter MFA delta. CJIS v6.1 IA-5(j)(1) sets the floor at AAL2. That is a multi-factor authenticator, or a memorized secret plus a possession-based authenticator (look-up secret, out-of-band authenticator, or OTP device). IA-5(j)(4) and IA-2(8) require at least one replay-resistant authenticator. OTP and out-of-band push meet that floor. The v6.1 policy does not require or prefer phishing-resistant authenticators. Appendix G.9, page G.9-2, assigns phishing resistance to AAL3 and states that the CJIS risk profile is AAL2. IA-2(1) and IA-2(2) are in both baselines. Access from outside a physically secure location, or over any network, is not a separate scope rule in the v6.1 IA-2 control text.
 
 **Implementation Guidance**
 
