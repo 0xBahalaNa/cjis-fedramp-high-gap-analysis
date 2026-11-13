@@ -14,8 +14,8 @@ Generated from `data/cjis-overlay.json`. CJIS Security Policy v6.1 has been the 
 |---------|----------|-------|
 | PS-3 | Personnel | CJIS v6.1 Delta — Personnel Screening |
 | PS-6 | Personnel | CJIS v6.1 Delta — Access Agreements |
-| IA-2 | Authentication | CJIS v6.1 Delta — Identification and Authentication |
-| IA-5 | Authentication | CJIS v6.1 Delta — Authenticator Management |
+| IA-2 | Authentication | Non-delta (corrected) — Identification and Authentication |
+| IA-5 | Authentication | Non-delta (corrected) — Authenticator Management |
 | MP-6 | Media Protection | CJIS v6.1 Delta — Media Sanitization |
 | SC-12 | Encryption | CJIS v6.1 Delta — Cryptographic Key Management |
 | SC-13 | Encryption | CJIS v6.1 Delta — Cryptographic Protection |
@@ -87,25 +87,25 @@ Signed CJIS Security Addendum for each individual with CJI access; addendum trac
 
 #### Authentication
 
-##### IA-2 - CJIS v6.1 Delta — Identification and Authentication
+##### IA-2 - Non-delta (corrected) — Identification and Authentication
 
 **FedRAMP High Baseline Requirement**
 
-Multi-factor authentication required for access to the information system per FedRAMP High baseline.
+Multi-factor authentication for privileged and non-privileged accounts. FedRAMP Rev 5 guidance for IA-2, IA-2(1), and IA-2(2) says multi-factor authentication must be phishing-resistant.
 
 **CJIS v6.1 Delta**
 
-Advanced Authentication required for CJI access: AAL2 (per NIST SP 800-63-3) is replay-resistant, and an authenticator app meets it. Phishing-resistant authenticators are recommended, not required. On MFA authenticator type, FedRAMP Rev 5 IA-2(1) and IA-2(2) guidance is the stricter one: multi-factor authentication must be phishing-resistant. Must use two of: something you know, something you have, something you are. Advanced Authentication is mandatory when accessing CJI from outside a physically secure location or over any network.
+Non-delta (corrected). No CJIS-stricter MFA delta. CJIS v6.1 IA-5(j)(1) sets the floor at AAL2. That is a multi-factor authenticator, or a memorized secret plus a possession-based authenticator (look-up secret, out-of-band authenticator, or OTP device). IA-5(j)(4) and IA-2(8) require at least one replay-resistant authenticator. OTP and out-of-band push meet that floor. The v6.1 policy does not require or prefer phishing-resistant authenticators. Appendix G.9, page G.9-2, assigns phishing resistance to AAL3 and states that the CJIS risk profile is AAL2. IA-2(1) and IA-2(2) are in both baselines. Access from outside a physically secure location, or over any network, is not a separate scope rule in the v6.1 IA-2 control text.
 
 **Implementation Guidance**
 
-Deploy AAL2-compliant MFA for all CJI access paths. Phishing-resistant authenticators (FIDO2/WebAuthn, PIV/CAC, or hardware tokens) are preferred. Software OTP tokens meet AAL2 minimum but do not satisfy phishing-resistance. Ensure MFA is enforced at the application layer, not just the network perimeter. Document which authenticator types are used and their AAL level.
+Meet the FedRAMP Rev 5 phishing-resistant rule for CJI access. A software OTP token meets the CJIS AAL2 floor and does not meet that rule. Enforce MFA at the application layer, not only at the network perimeter. Record the authenticator type and its AAL.
 
 **Evidence Required**
 
 MFA configuration screenshots/exports; authenticator type inventory and AAL classification; authentication policy documentation specifying CJIS Advanced Authentication requirements; logs demonstrating MFA enforcement for CJI access; network diagrams showing MFA enforcement points.
 
-##### IA-5 - CJIS v6.1 Delta — Authenticator Management
+##### IA-5 - Non-delta (corrected) — Authenticator Management
 
 **FedRAMP High Baseline Requirement**
 

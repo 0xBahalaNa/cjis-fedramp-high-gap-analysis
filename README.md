@@ -10,7 +10,7 @@
 **CJIS v6.x has been the default audit baseline since April 1, 2026. A public-safety vendor that can't demonstrate the delta from its FedRAMP High baseline loses state and local deals it already qualifies for technically. This repo fixes that delta in a regenerable list.**
 
 - Control-by-control delta, FedRAMP High → CJIS v6.1 (released June 25, 2026), with the enforcement timeline through October 2027
-- 13 implementation-level deltas and 12 control-level gaps, verified against the published v6.0 text and re-checked against the v6.1 List of Priorities; not a claim that every CJIS nuance is catalogued
+- 13 implementation-level deltas and 12 control-level gaps, verified against the published v6.0 text and re-checked against the v6.1 List of Priorities; not a claim that every CJIS nuance is catalogued. IA-2 is listed in that count as a corrected non-delta, the same way IA-5 is.
 - FedRAMP High OSCAL profile plus a CJIS overlay recording each delta; `analysis/gap-analysis.md` holds the narrative and `scripts/generate_gap_report.py` rebuilds `output/gap-report.md`
 - NIST 800-53 Rev 5 / FedRAMP High / CJIS v6.1
 
@@ -59,13 +59,15 @@ The gap analysis distinguishes two categories of gaps between CJIS v6.1 and FedR
 
 ### Implementation-Level Deltas
 
-Controls where CJIS v6.1 imposes stricter requirements than the FedRAMP High baseline:
+Controls where CJIS v6.1 imposes stricter requirements than the FedRAMP High baseline.
+
+IA-2 is listed in this table, and in the count of 13, as a corrected non-delta, the same way IA-5 is.
 
 | NIST 800-53 Rev 5 | FedRAMP High | CJIS v6.1 Delta | Category |
 |--------------------|:------------:|------------------|----------|
 | PS-3 Personnel Screening | Background investigation | Fingerprint-based background check (state/national) required for all CJI access | Personnel |
 | PS-6 Access Agreements | Signed rules of behavior | CJIS Security Addendum required before CJI access | Personnel |
-| IA-2 Identification & Authentication | MFA required | AAL2 (replay-resistant; an authenticator app meets it); phishing-resistant authenticators recommended, not required; FedRAMP Rev 5 IA-2(1) and IA-2(2) stricter on authenticator type | Authentication |
+| IA-2 Identification & Authentication | MFA required. Rev 5 guidance for IA-2, IA-2(1), and IA-2(2) requires phishing-resistant MFA | No CJIS-stricter MFA delta. AAL2 is replay-resistant (OTP and out-of-band push meet it). The v6.1 policy does not require phishing resistance | Authentication |
 | IA-5 Authenticator Management | Complexity/rotation per baseline | No CJIS-specific numeric delta (annual/event-driven refresh per IA-5(f), matches baseline) | Authentication |
 | MP-6 Media Sanitization | Sanitize before disposal/reuse | Prescriptive sanitization procedures per media type; physical destruction requirements for CJI media | Media Protection |
 | SC-12 Cryptographic Key Management | FIPS-validated modules | Agency-managed encryption keys; FIPS 140-2/140-3 validated modules | Encryption |
